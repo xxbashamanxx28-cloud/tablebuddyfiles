@@ -129,6 +129,17 @@
 }
 .swatch[aria-pressed="true"], .swatch.is-selected { box-shadow: 0 0 0 2px rgb(var(--color-brand-cobalt)); }
 .swatch-group { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+/* Option pickers (swatches and pill labels) wrap a visually-hidden radio
+   input, so its native focus outline would render around an invisible 1px
+   box. Show the ring on the visible label/swatch instead on keyboard focus. */
+label[data-option-value]:focus-within {
+  outline: 3px solid rgb(var(--color-brand-aqua));
+  outline-offset: 2px;
+  border-radius: var(--radius-button);
+}
+.swatch-group label:focus-within {
+  border-radius: 50%;
+}
 
 /* Price */
 .price { display: flex; align-items: baseline; gap: 0.5rem; font-weight: 700; }

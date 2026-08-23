@@ -14,6 +14,7 @@
             <input type="radio" name="option-{{ option.position }}" value="{{ value | escape }}"
               data-option-input data-option-index="{{ forloop.index0 }}"
               class="visually-hidden"
+              aria-label="{{ value | escape }}"
               {% if value == option.selected_value %}checked{% endif %}>
             {%- render 'swatch', value: value, selected: value == option.selected_value, interactive: false -%}
           </label>
