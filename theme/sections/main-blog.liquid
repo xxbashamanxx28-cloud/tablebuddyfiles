@@ -1,0 +1,43 @@
+<div class="color-{{ section.settings.color_scheme }}">
+  <div class="page-width section section--tight">
+    <div class="section-header section-header--center">
+      <h1 class="h1">{{ blog.title }}</h1>
+    </div>
+    {%- paginate blog.articles by 12 -%}
+      <div class="grid grid--3">
+        {%- for article in blog.articles -%}
+          <a href="{{ article.url }}" class="card" style="overflow:hidden;">
+            <div style="aspect-ratio:4/3;background:var(--cs-card,#EEF4FB);overflow:hidden;">
+              {%- if article.image -%}
+                <img src="{{ article.image | image_url: width: 500 }}" alt="{{ article.title | escape }}" width="500" height="375" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+              {%- else -%}
+                <img src="{{ 'lifestyle-regular-mandala-sofa-laptop-01.png' | asset_url }}" alt="{{ article.title | escape }}" width="500" height="375" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+              {%- endif -%}
+            </div>
+            <div style="padding:1.1rem 1.25rem;">
+              <p class="eyebrow">{{ article.published_at | date: '%d %b %Y' }}</p>
+              <p style="font-weight:700;margin-top:0.4rem;">{{ article.title }}</p>
+              <p class="text-muted" style="font-size:0.9rem;margin-top:0.4rem;">{{ article.excerpt_or_content | strip_html | truncate: 110 }}</p>
+            </div>
+          </a>
+        {%- endfor -%}
+      </div>
+      {%- if paginate.pages > 1 -%}
+        <nav class="flex-center gap-sm" style="margin-top:3rem;" aria-label="{{ 'general.pagination.label' | t }}">
+          {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}" class="btn btn--secondary btn--sm">{{ 'general.pagination.previous' | t }}</a>{%- endif -%}
+          {%- if paginate.next -%}<a href="{{ paginate.next.url }}" class="btn btn--secondary btn--sm">{{ 'general.pagination.next' | t }}</a>{%- endif -%}
+        </nav>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Blog",
+  "tag": "section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-paper" }
+  ]
+}
+{% endschema %}

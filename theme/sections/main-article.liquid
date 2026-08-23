@@ -1,0 +1,51 @@
+<div class="color-{{ section.settings.color_scheme }}">
+  <div class="page-width section section--tight">
+    <nav class="breadcrumbs" style="margin-bottom:1.5rem;">
+      <a href="{{ routes.root_url }}">{{ 'general.breadcrumbs.home' | t }}</a>
+      {%- render 'icon', name: 'chevron-right', size: 14 -%}
+      <a href="{{ blog.url }}">{{ blog.title }}</a>
+    </nav>
+
+    <div style="max-width:720px;margin-inline:auto;">
+      <p class="eyebrow">{{ article.published_at | date: '%d %B %Y' }}{% if article.author != blank %} · {{ article.author }}{% endif %}</p>
+      <h1 class="h1" style="margin-top:0.5rem;">{{ article.title }}</h1>
+
+      {%- if article.image -%}
+        <div style="aspect-ratio:16/9;border-radius:var(--radius-card);overflow:hidden;margin-top:2rem;">
+          <img src="{{ article.image | image_url: width: 1200 }}" alt="{{ article.title | escape }}" width="1200" height="675" style="width:100%;height:100%;object-fit:cover;" loading="eager">
+        </div>
+      {%- endif -%}
+
+      <div class="prose" style="margin-top:2rem;">{{ article.content }}</div>
+
+      {%- if blog.comments_enabled? -%}
+        <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--cs-border,#E4ECF5);">
+          <h2 class="h4">{{ article.comments_count }} comments</h2>
+          {%- for comment in article.comments -%}
+            <div style="margin-top:1.25rem;">
+              <p style="font-weight:700;">{{ comment.author }}</p>
+              <div class="prose" style="margin-top:0.3rem;">{{ comment.content }}</div>
+            </div>
+          {%- endfor -%}
+          {%- form 'new_comment', article -%}
+            {%- if form.posted_successfully? -%}<p style="margin-top:1rem;">Thanks — your comment has been submitted.</p>{%- endif -%}
+            <div class="field" style="margin-top:1rem;"><label for="comment-author">Name</label><input type="text" id="comment-author" class="input" name="comment[author]" required></div>
+            <div class="field" style="margin-top:0.75rem;"><label for="comment-email">Email</label><input type="email" id="comment-email" class="input" name="comment[email]" required></div>
+            <div class="field" style="margin-top:0.75rem;"><label for="comment-body">Comment</label><textarea id="comment-body" class="input" name="comment[body]" rows="4" required></textarea></div>
+            <button type="submit" class="btn btn--primary" style="margin-top:1rem;">Post comment</button>
+          {%- endform -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Article",
+  "tag": "section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-paper" }
+  ]
+}
+{% endschema %}

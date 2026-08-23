@@ -10,7 +10,7 @@
       {%- assign qv = product.selected_or_first_available_variant -%}
       <form data-type="add-to-cart-form">
         <input type="hidden" name="id" value="{{ qv.id }}" data-variant-id-input>
-        <script type="application/json" data-product-json>{{ product.variants | json }}</script>
+        <script type="application/json" data-product-json>{{ product | json }}</script>
         <button type="submit" class="btn btn--primary btn--sm" data-submit-button
           data-add-text="{{ 'products.product.quick_add' | t }}"
           data-soldout-text="{{ 'products.product.sold_out' | t }}"

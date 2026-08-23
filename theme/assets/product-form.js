@@ -18,7 +18,6 @@
       this.availabilityEl = this.querySelector('[data-availability]');
       this.submitBtn = this.querySelector('[data-submit-button]');
       this.skuEl = this.querySelector('[data-sku]');
-      this.galleryTrigger = this.querySelector('[data-gallery]');
 
       this.optionInputs.forEach(function (input) {
         input.addEventListener('change', this.onOptionChange.bind(this));
@@ -89,9 +88,8 @@
         this.availabilityEl.textContent = variant.available ? (this.availabilityEl.getAttribute('data-in-stock-text') || 'In stock') : (this.availabilityEl.getAttribute('data-oos-text') || 'Sold out');
         this.availabilityEl.classList.toggle('is-oos', !variant.available);
       }
-      if (variant.featured_media && this.galleryTrigger) {
-        var target = this.querySelector('[data-media-id="' + variant.featured_media.id + '"]');
-        if (target) target.dispatchEvent(new CustomEvent('gallery:select', { bubbles: true, detail: { mediaId: variant.featured_media.id } }));
+      if (variant.featured_media) {
+        document.dispatchEvent(new CustomEvent('variant:media-change', { detail: { mediaId: variant.featured_media.id } }));
       }
       if (pushState && window.history && this.product.url) {
         var url = this.product.url + '?variant=' + variant.id;
@@ -110,13 +108,11 @@
       this.thumbs.forEach(function (thumb) {
         thumb.addEventListener('click', function () { this.select(thumb.getAttribute('data-media-id')); }.bind(this));
       }.bind(this));
-      this.addEventListener('gallery:select', function (e) { this.select(e.detail.mediaId); }.bind(this));
+      document.addEventListener('variant:media-change', function (e) { this.select(e.detail.mediaId); }.bind(this));
     }
     select(mediaId) {
       var target = this.main.querySelector('[data-media-id="' + mediaId + '"]');
       if (!target) return;
-      this.main.querySelectorAll('[data-media-id]').forEach(function (el) { el.hidden = true; });
-      target.hidden = false;
       this.thumbs.forEach(function (t) { t.classList.toggle('is-active', t.getAttribute('data-media-id') === mediaId); });
       if (this.main.scrollTo) this.main.scrollTo({ left: target.offsetLeft, behavior: 'smooth' });
     }
