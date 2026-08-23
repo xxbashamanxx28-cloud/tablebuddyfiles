@@ -12,11 +12,22 @@
           <tr>
             <th scope="col"></th>
             {%- for block in section.blocks -%}
+              {%- liquid
+                assign col_image = block.settings.image
+                if col_image == blank and block.settings.product != blank
+                  assign col_image = block.settings.product.featured_image
+                endif
+              -%}
               <th scope="col" style="text-align:center;">
-                {%- if block.settings.image != blank -%}
-                  <img src="{{ block.settings.image | image_url: width: 160 }}" alt="{{ block.settings.name | escape }}" loading="lazy" width="90" height="90" style="margin-inline:auto;object-fit:contain;">
+                {%- if col_image != blank -%}
+                  <img src="{{ col_image | image_url: width: 200 }}" alt="{{ block.settings.name | escape }}" loading="lazy" width="110" height="110" style="margin-inline:auto;object-fit:contain;border-radius:12px;">
+                {%- else -%}
+                  <span class="compare-table__badge" aria-hidden="true">{{ block.settings.name | slice: 0, 1 }}</span>
                 {%- endif -%}
-                <div style="margin-top:0.5rem;">{{ block.settings.name }}</div>
+                <div class="compare-table__name">{{ block.settings.name }}</div>
+                {%- if block.settings.product != blank -%}
+                  <a href="{{ block.settings.product.url }}" class="btn btn--primary btn--sm" style="margin-top:0.6rem;">{{ 'products.product.view_details' | t }}</a>
+                {%- endif -%}
               </th>
             {%- endfor -%}
           </tr>
@@ -24,7 +35,17 @@
         <tbody>
           <tr>
             <th scope="row">{{ 'products.product.price' | t }}</th>
-            {%- for block in section.blocks -%}<td style="text-align:center;font-weight:700;">{{ block.settings.price_text }}</td>{%- endfor -%}
+            {%- for block in section.blocks -%}
+              <td style="text-align:center;font-weight:700;">
+                {%- if block.settings.product != blank and block.settings.product.price_varies -%}
+                  {{ 'products.product.price_from' | t }} {{ block.settings.product.price_min | money }}
+                {%- elsif block.settings.product != blank -%}
+                  {{ block.settings.product.price | money }}
+                {%- else -%}
+                  {{ block.settings.price_text }}
+                {%- endif -%}
+              </td>
+            {%- endfor -%}
           </tr>
           <tr>
             <th scope="row">Height positions</th>
@@ -48,7 +69,28 @@
           </tr>
           <tr>
             <th scope="row">Colours available</th>
-            {%- for block in section.blocks -%}<td style="text-align:center;">{{ block.settings.colours }}</td>{%- endfor -%}
+            {%- for block in section.blocks -%}
+              {%- liquid
+                assign colour_option = blank
+                if block.settings.product != blank
+                  assign colour_option = block.settings.product.options_by_name['Color']
+                  if colour_option == blank
+                    assign colour_option = block.settings.product.options_by_name['Colour']
+                  endif
+                endif
+              -%}
+              <td style="text-align:center;">
+                {%- if colour_option != blank -%}
+                  <div class="compare-table__swatches">
+                    {%- for value in colour_option.values -%}
+                      {%- render 'swatch', value: value, size: 16, interactive: false -%}
+                    {%- endfor -%}
+                  </div>
+                {%- else -%}
+                  {{ block.settings.colours }}
+                {%- endif -%}
+              </td>
+            {%- endfor -%}
           </tr>
           <tr>
             <th scope="row">Folded size</th>
@@ -57,16 +99,6 @@
           <tr>
             <th scope="row">Warranty</th>
             {%- for block in section.blocks -%}<td style="text-align:center;">{{ block.settings.warranty | default: '—' }}</td>{%- endfor -%}
-          </tr>
-          <tr>
-            <th scope="row"></th>
-            {%- for block in section.blocks -%}
-              <td style="text-align:center;">
-                {%- if block.settings.product != blank -%}
-                  <a href="{{ block.settings.product.url }}" class="btn btn--secondary btn--sm">{{ 'products.product.view_details' | t }}</a>
-                {%- endif -%}
-              </td>
-            {%- endfor -%}
           </tr>
         </tbody>
       </table>
@@ -109,7 +141,7 @@
       "type": "model",
       "name": "Model column",
       "settings": [
-        { "type": "product", "id": "product", "label": "Linked product" },
+        { "type": "product", "id": "product", "label": "Linked product", "info": "Link the real product to auto-fill this column's image, price and colour swatches from Shopify." },
         { "type": "image_picker", "id": "image", "label": "Image override" },
         { "type": "text", "id": "name", "label": "Name", "default": "Table Buddy Regular" },
         { "type": "text", "id": "price_text", "label": "Price (text)", "info": "Enter manually, e.g. $79. Configure the real price on the linked product / Shopify admin.", "default": "$—" },

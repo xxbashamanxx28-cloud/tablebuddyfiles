@@ -230,8 +230,19 @@ label[data-option-value]:focus-within {
 .tb-table { min-width: 640px; background: var(--cs-card, #fff); }
 .tb-table th, .tb-table td { padding: 1rem 1.25rem; text-align: left; border-bottom: 1px solid var(--cs-border, #E4ECF5); }
 .tb-table th:first-child, .tb-table td:first-child { position: sticky; left: 0; background: var(--cs-card, #fff); font-weight: 700; }
-.tb-table thead th { font-family: var(--font-heading-family), sans-serif; font-size: 1rem; vertical-align: bottom; }
+.tb-table thead th { font-family: var(--font-heading-family), sans-serif; font-size: 1.05rem; font-weight: 700; vertical-align: bottom; background: color-mix(in srgb, var(--cs-border, #D7E3F0) 35%, transparent); padding-top: 1.5rem; padding-bottom: 1.25rem; }
+.tb-table tbody th { color: var(--cs-muted, #57697F); font-weight: 600; font-size: 0.9rem; }
 .tb-table tr:last-child td { border-bottom: 0; }
+.tb-table tbody tr:nth-child(even) td, .tb-table tbody tr:nth-child(even) th:not(:first-child) { background: color-mix(in srgb, var(--cs-border, #D7E3F0) 14%, transparent); }
+
+.compare-table__badge {
+  display: flex; align-items: center; justify-content: center;
+  width: 72px; height: 72px; margin-inline: auto; border-radius: 50%;
+  background: linear-gradient(135deg, rgb(var(--color-brand-cobalt)), rgb(var(--color-brand-aqua)));
+  color: #fff; font-family: var(--font-heading-family), sans-serif; font-size: 1.5rem; font-weight: 700;
+}
+.compare-table__name { margin-top: 0.6rem; font-weight: 700; }
+.compare-table__swatches { display: flex; gap: 0.35rem; justify-content: center; flex-wrap: wrap; }
 
 /* Icon button */
 .icon-btn {
