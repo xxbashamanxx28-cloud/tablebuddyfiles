@@ -1,8 +1,13 @@
 {%- comment -%} Accepts: product {%- endcomment -%}
 {%- for option in product.options_with_values -%}
+  {%- assign option_name_lower = option.name | downcase -%}
+  {%- assign is_color = false -%}
+  {%- if option_name_lower == 'color' or option_name_lower == 'colour' -%}
+    {%- assign is_color = true -%}
+  {%- endif -%}
   <div class="field" data-option-value>
-    <span class="field__label">{{ option.name }}{% if option.name == 'Color' %}: <span data-selected-value>{{ option.selected_value }}</span>{% endif %}</span>
-    {%- if option.name == 'Color' -%}
+    <span class="field__label">{{ option.name }}{% if is_color %}: <span data-selected-value>{{ option.selected_value }}</span>{% endif %}</span>
+    {%- if is_color -%}
       <div class="swatch-group" role="radiogroup" aria-label="{{ option.name }}">
         {%- for value in option.values -%}
           <label data-option-value>
@@ -10,7 +15,7 @@
               data-option-input data-option-index="{{ forloop.index0 }}"
               class="visually-hidden"
               {% if value == option.selected_value %}checked{% endif %}>
-            {%- render 'swatch', value: value, selected: value == option.selected_value -%}
+            {%- render 'swatch', value: value, selected: value == option.selected_value, interactive: false -%}
           </label>
         {%- endfor -%}
       </div>

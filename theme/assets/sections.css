@@ -40,10 +40,20 @@
   color: rgb(var(--color-brand-navy));
   letter-spacing: -0.02em;
 }
-.site-header__nav { display: none; flex: 1; }
-.site-header__nav-list { display: flex; align-items: center; gap: 1.9rem; }
+.site-header__nav { display: none; flex: 1; min-width: 0; }
+.site-header__nav-list {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 1.6vw, 1.9rem);
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-block: 0.25rem;
+}
+.site-header__nav-list::-webkit-scrollbar { display: none; }
+.site-header__nav-item { flex-shrink: 0; }
 .site-header__nav-link {
   display: flex; align-items: center; gap: 0.3rem;
+  white-space: nowrap;
   font-weight: 600;
   padding: 0.5rem 0;
   font-size: 0.98rem;
@@ -106,7 +116,8 @@
   font-size: 0.85rem;
   color: var(--cs-muted);
 }
-.site-footer__payment { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.site-footer__payment { display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: center; }
+.payment-icon { height: 24px; width: auto; border-radius: 4px; }
 @media screen and (max-width: 989px) {
   .site-footer__top { grid-template-columns: 1fr 1fr; }
 }

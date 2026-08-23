@@ -113,14 +113,17 @@ Write unique copy for each in the page's Content field (this is what the `main-p
 
 **Online Store → Navigation**
 
-**Main menu** (assign as "Main menu" so the header picks it up — the header section setting also lets you point to a different menu by handle):
+**Main menu** (assign as "Main menu" so the header picks it up — the header section setting also lets you point to a different menu by handle). **Group it like this** — a flat menu with all ~20 sitemap pages at the top level will overflow a real desktop nav bar; grouping related pages under a few dropdowns (exactly what the "Help ▾" dropdown in your screenshots already does successfully) keeps it usable:
 ```
 Home            → /
-All Products    → /collections/all
-Table Buddy Regular / Smart / Executive → individual product pages
-Bundles         → /pages/bundles
+Shop            → /collections/all   (top-level link + dropdown)
+  ├ Table Buddy Regular
+  ├ Table Buddy Smart
+  ├ Table Buddy Executive
+  ├ All Products
+  ├ Bundles              → /pages/bundles
   └ Build Your Own Bundle → /pages/build-your-own-bundle
-Shop by Use     → /pages/shop-by-use
+Shop by Use     → /pages/shop-by-use   (top-level link + dropdown)
   ├ Working from Home
   ├ Sofa and Recliner
   ├ Bedside
@@ -131,14 +134,22 @@ Shop by Use     → /pages/shop-by-use
   └ Small-Space Living
 Compare Models  → /pages/compare-models
 Product Finder Quiz → /pages/product-finder-quiz
-Reviews and Customer Gallery → /pages/reviews-and-customer-gallery
 How to Use      → /pages/how-to-use
 Our Story       → /pages/our-story
-FAQs            → /pages/faqs
+Help            → (top-level link can point anywhere, e.g. /pages/faqs)
+  ├ FAQs                        → /pages/faqs
+  ├ Reviews and Customer Gallery → /pages/reviews-and-customer-gallery
+  ├ Dimensions and Fit Guide    → /pages/dimensions-and-fit-guide
+  ├ Inspiration and Guides      → /pages/inspiration-and-guides
+  ├ Shipping                    → /policies/shipping-policy (or /pages/shipping)
+  ├ Returns                     → /policies/refund-policy (or /pages/returns)
+  ├ Warranty                    → /pages/warranty
+  ├ Order Tracking              → /pages/order-tracking
+  └ Contact                     → /pages/contact
 ```
-Any top-level item with sub-links automatically becomes a mega menu dropdown on desktop and an expandable section in the mobile drawer — no extra config needed.
+That's 9 top-level items instead of 20+. Any top-level item with sub-links automatically becomes a mega menu dropdown on desktop and an expandable section in the mobile drawer — no extra config needed. (The nav bar also scrolls horizontally on its own if a menu ever gets too wide for the screen, as a safety net — but grouping like this is the better fix.)
 
-**Footer menus**: create 2–3 short menus (e.g. "Shop", "Help", "Company") and assign them in the footer section's blocks in the theme editor (**Customize → Footer → Link list blocks**).
+**Footer menus**: create 2–3 short menus (e.g. "Shop", "Help", "Company") and assign them in the footer section's blocks in the theme editor (**Customize → Footer → Link list blocks**) — a good place to surface Shipping, Returns, Warranty, Privacy and Terms again for visibility, even if they're already tucked into the Help dropdown above.
 
 ---
 

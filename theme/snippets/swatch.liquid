@@ -1,17 +1,22 @@
 {%- comment -%}
   Renders one color/finish swatch circle.
-  Accepts: value (option value string), selected (bool), size
+  Accepts: value (option value string), selected (bool), size, interactive (default true)
+  Tries an exact-match lookup first, then falls back to keyword matching so
+  new color names the merchant adds still get a sensible swatch instead of
+  a flat gray dot.
 {%- endcomment -%}
 {%- liquid
   assign key = value | handleize
+  assign swatch_style = ''
+
   case key
-    when 'natural', 'oak', 'natural-oak'
+    when 'natural', 'oak', 'natural-oak', 'alder'
       assign swatch_style = 'background:#D9B98A;'
-    when 'mahogany', 'mahogany-woodgrain'
+    when 'mahogany', 'mahogany-woodgrain', 'rosewood', 'walnut'
       assign swatch_style = 'background:#6B2B22;'
-    when 'sky-blue', 'skyblue'
+    when 'sky-blue', 'skyblue', 'aqua-blue'
       assign swatch_style = 'background:#4FB8F0;'
-    when 'cobalt', 'blue'
+    when 'cobalt', 'blue', 'akzo-blue'
       assign swatch_style = 'background:#2A4FE0;'
     when 'navy'
       assign swatch_style = 'background:#0B2545;'
@@ -19,17 +24,52 @@
       assign swatch_style = 'background:#111417;'
     when 'white'
       assign swatch_style = 'background:#FFFFFF;'
+    when 'marble'
+      assign swatch_style = 'background:linear-gradient(135deg,#FFFFFF 0%,#E4E9EF 45%,#FFFFFF 55%,#D7DEE6 100%);'
     when 'pink'
       assign swatch_style = 'background:#EC1E79;'
-    when 'red'
+    when 'red', 'cherry-red', 'cherry'
       assign swatch_style = 'background:#D42A2A;'
     when 'aqua'
       assign swatch_style = 'background:#16B9C6;'
     when 'mandala', 'mandala-print', 'print'
       assign swatch_style = 'background:conic-gradient(from 90deg,#EC1E79,#F5A623,#16B9C6,#2A4FE0,#EC1E79);'
+  endcase
+
+  if swatch_style == blank
+    if key contains 'wood' or key contains 'oak' or key contains 'walnut' or key contains 'alder' or key contains 'rosewood' or key contains 'mahogany' or key contains 'timber' or key contains 'natural'
+      assign swatch_style = 'background:#B98955;'
+    elsif key contains 'navy'
+      assign swatch_style = 'background:#0B2545;'
+    elsif key contains 'sky' or key contains 'aqua' or key contains 'teal' or key contains 'cyan'
+      assign swatch_style = 'background:#4FB8F0;'
+    elsif key contains 'blue' or key contains 'cobalt'
+      assign swatch_style = 'background:#2A4FE0;'
+    elsif key contains 'black' or key contains 'charcoal' or key contains 'graphite'
+      assign swatch_style = 'background:#111417;'
+    elsif key contains 'white' or key contains 'marble' or key contains 'ivory' or key contains 'cream'
+      assign swatch_style = 'background:#F4F1EC;'
+    elsif key contains 'pink' or key contains 'blush' or key contains 'rose'
+      assign swatch_style = 'background:#EC1E79;'
+    elsif key contains 'red' or key contains 'cherry' or key contains 'crimson'
+      assign swatch_style = 'background:#D42A2A;'
+    elsif key contains 'green' or key contains 'sage' or key contains 'olive'
+      assign swatch_style = 'background:#3C7A4C;'
+    elsif key contains 'yellow' or key contains 'gold' or key contains 'mustard'
+      assign swatch_style = 'background:#F5A623;'
+    elsif key contains 'orange'
+      assign swatch_style = 'background:#E8631B;'
+    elsif key contains 'purple' or key contains 'violet' or key contains 'lilac'
+      assign swatch_style = 'background:#7B4FE0;'
+    elsif key contains 'grey' or key contains 'gray' or key contains 'silver' or key contains 'steel'
+      assign swatch_style = 'background:#9AA6B2;'
+    elsif key contains 'mandala' or key contains 'print' or key contains 'pattern' or key contains 'multi'
+      assign swatch_style = 'background:conic-gradient(from 90deg,#EC1E79,#F5A623,#16B9C6,#2A4FE0,#EC1E79);'
     else
       assign swatch_style = 'background:#D7E3F0;'
-  endcase
+    endif
+  endif
+
   assign tag = 'button'
   if interactive == false
     assign tag = 'span'

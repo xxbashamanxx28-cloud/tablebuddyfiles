@@ -3,6 +3,7 @@
   assign ratio = image_ratio | default: settings.product_image_ratio
   assign rating = product.metafields.reviews.rating.value
   assign rating_count = product.metafields.reviews.rating_count.value
+  assign color_option = product.options_by_name['Color'] | default: product.options_by_name['Colour']
 -%}
 <div class="product-card">
   {%- if settings.show_quick_add and product.available -%}
@@ -47,9 +48,9 @@
         {%- render 'star-rating', rating: rating.rating, count: rating_count -%}
       {%- endif -%}
       {%- render 'price', product: product, show_from: true -%}
-      {%- if settings.show_color_swatches and product.options_by_name['Color'] -%}
+      {%- if settings.show_color_swatches and color_option -%}
         <div class="product-card__swatches">
-          {%- for value in product.options_by_name['Color'].values limit: 6 -%}
+          {%- for value in color_option.values limit: 6 -%}
             {%- render 'swatch', value: value, size: 18, interactive: false -%}
           {%- endfor -%}
         </div>

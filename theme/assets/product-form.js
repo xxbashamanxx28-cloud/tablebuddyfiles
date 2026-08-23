@@ -124,7 +124,7 @@
     var form = e.target.closest('[data-bundle-form]');
     if (!form) return;
     e.preventDefault();
-    var items = Array.prototype.slice.call(form.querySelectorAll('[data-bundle-item]:checked, [data-bundle-item][data-required="true"]'))
+    var items = Array.prototype.slice.call(form.querySelectorAll('[data-bundle-item]:checked'))
       .map(function (el) { return { id: parseInt(el.value, 10), quantity: 1 }; });
     if (!items.length) return;
     var btn = form.querySelector('[type="submit"]');
