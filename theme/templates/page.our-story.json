@@ -2,7 +2,7 @@
   "sections": {
     "intro": {
       "type": "main-page",
-      "settings": { "color_scheme": "scheme-paper", "center": true }
+      "settings": { "eyebrow": "Our story", "color_scheme": "scheme-paper", "center": true }
     },
     "mission": {
       "type": "promo-split",

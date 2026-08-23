@@ -2,6 +2,8 @@
 
 This theme is code-complete and installable, but a Shopify **store** is more than a theme — it needs products, collections, pages, menus and a few settings wired up in the admin. This guide walks through exactly that, in order.
 
+> **If your header/footer menu only shows a few items** (e.g. Home, Shop All, the 3 products, Shipping, Returns) **and nothing for the Quiz, Bundles, Compare Models, Shop by Use, etc.** — that's not a theme bug. Navigation menus are entirely merchant-configured in Shopify admin (**Online Store → Navigation**); the theme renders whatever menu items exist there, however many or few. See **Section 6** below for the full recommended menu structure to copy in.
+
 ---
 
 ## 1. Install the theme

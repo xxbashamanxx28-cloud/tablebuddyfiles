@@ -1,7 +1,13 @@
+<div class="color-scheme-sky">
+  <div class="page-width section--tight" style="padding-block:3rem 2.5rem;text-align:center;">
+    {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+    <h1 class="h1" style="margin-top:0.4rem;">{{ page.title }}</h1>
+  </div>
+</div>
+
 <div class="color-{{ section.settings.color_scheme }}">
   <div class="page-width section {% if section.settings.narrow %}section--tight{% endif %}">
     <div class="rich-text {% if section.settings.center %}rich-text--center{% endif %}" style="max-width:760px;{% if section.settings.center %}margin-inline:auto;{% endif %}">
-      <h1 class="h1" style="margin-bottom:1.5rem;">{{ page.title }}</h1>
       <div class="prose">{{ page.content }}</div>
     </div>
   </div>
@@ -12,6 +18,7 @@
   "name": "Page content",
   "tag": "section",
   "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow (above title)" },
     { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-paper" },
     { "type": "checkbox", "id": "narrow", "label": "Reduce spacing", "default": false },
     { "type": "checkbox", "id": "center", "label": "Center content", "default": false }

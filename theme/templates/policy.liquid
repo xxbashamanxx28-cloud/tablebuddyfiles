@@ -1,9 +1,46 @@
+{%- liquid
+  assign title_lower = page_title | downcase
+  assign policy_icon = 'shield'
+  if title_lower contains 'shipping'
+    assign policy_icon = 'truck'
+  elsif title_lower contains 'refund' or title_lower contains 'return' or title_lower contains 'cancellation'
+    assign policy_icon = 'refresh'
+  elsif title_lower contains 'privacy'
+    assign policy_icon = 'shield'
+  elsif title_lower contains 'terms' or title_lower contains 'service'
+    assign policy_icon = 'compare'
+  endif
+-%}
+<div class="color-scheme-sky">
+  <div class="page-width section--tight" style="padding-block:3rem 2.5rem;text-align:center;">
+    <span class="benefit-list__icon" style="background:rgba(255,255,255,0.6);width:56px;height:56px;margin-inline:auto;">
+      {%- render 'icon', name: policy_icon, size: 26 -%}
+    </span>
+    <p class="eyebrow" style="margin-top:1rem;">Policies</p>
+    <h1 class="h1" style="margin-top:0.4rem;">{{ page_title }}</h1>
+  </div>
+</div>
+
 <div class="color-scheme-paper">
   <div class="page-width section">
-    <div class="rich-text" style="max-width:760px;margin-inline:auto;">
-      <h1 class="h1" style="margin-bottom:1.5rem;">{{ page_title }}</h1>
-      <div class="prose">
-        {{ content_for_layout }}
+    <div class="policy-layout">
+      <div class="rich-text policy-content">
+        <div class="prose">
+          {{ content_for_layout }}
+        </div>
+      </div>
+
+      <div class="card card--pad" style="position:sticky;top:100px;">
+        <p style="font-weight:700;margin-bottom:1rem;">Need a hand?</p>
+        <div style="display:flex;flex-direction:column;gap:0.85rem;">
+          <a href="/pages/contact" class="flex gap-sm" style="align-items:center;">{%- render 'icon', name: 'mail', size: 18 -%} Contact us</a>
+          <a href="/pages/order-tracking" class="flex gap-sm" style="align-items:center;">{%- render 'icon', name: 'truck', size: 18 -%} Track an order</a>
+          <a href="/pages/faqs" class="flex gap-sm" style="align-items:center;">{%- render 'icon', name: 'compare', size: 18 -%} Read the FAQs</a>
+        </div>
+        <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--cs-border,#E4ECF5);display:flex;flex-direction:column;gap:0.75rem;">
+          <span class="flex gap-sm" style="align-items:center;font-size:0.85rem;font-weight:600;">{%- render 'icon', name: 'shield', size: 16 -%} 30-day money-back guarantee</span>
+          <span class="flex gap-sm" style="align-items:center;font-size:0.85rem;font-weight:600;">{%- render 'icon', name: 'refresh', size: 16 -%} 12-month warranty</span>
+        </div>
       </div>
     </div>
   </div>
