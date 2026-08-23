@@ -4,9 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>{{ shop.name }} gift card</title>
-  {{ 'theme-variables.css.liquid' | asset_url | stylesheet_tag }}
   {{ 'base.css' | asset_url | stylesheet_tag }}
   {{ 'components.css' | asset_url | stylesheet_tag }}
+  {% style %}
+    {%- render 'theme-style-variables' -%}
+  {% endstyle %}
   <meta name="robots" content="noindex">
 </head>
 <body class="color-scheme-navy" style="min-height:100vh;">

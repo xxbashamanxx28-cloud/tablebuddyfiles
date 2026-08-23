@@ -1,5 +1,42 @@
 /* Table Buddy theme — base reset, typography, layout primitives */
 
+/* Static fallback tokens. The real values come from settings via an inline
+   {% style %} block rendered before this stylesheet (see snippets/theme-style-variables.liquid) —
+   these are a safety net only, so the theme still looks correct even if that
+   block were ever missing from a template. */
+:root {
+  --page-width: 1280px;
+  --space-section: 80px;
+  --radius-card: 24px;
+  --radius-button: 999px;
+  --radius-input: 12px;
+  --radius-badge: 999px;
+  --color-brand-navy: 11, 37, 69;
+  --color-brand-cobalt: 42, 79, 224;
+  --color-brand-aqua: 22, 185, 198;
+  --color-brand-sky: 79, 184, 240;
+  --font-heading-family: 'Poppins';
+  --font-heading-weight: 700;
+  --font-heading-style: normal;
+  --font-body-family: 'Inter';
+  --font-body-weight: 400;
+  --font-body-style: normal;
+  --heading-scale: 100%;
+  --body-scale: 100%;
+  --cs-background: #F7FAFD;
+  --cs-text: #0B1B2B;
+  --cs-heading: #0B2545;
+  --cs-muted: #45566E;
+  --cs-border: #D7E3F0;
+  --cs-card: #FFFFFF;
+  --cs-btn-bg: #2A4FE0;
+  --cs-btn-text: #FFFFFF;
+  --cs-btn2-bg: #FFFFFF;
+  --cs-btn2-text: #0B2545;
+  --cs-badge-bg: #16B9C6;
+  --cs-badge-text: #FFFFFF;
+}
+
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; }
 body {

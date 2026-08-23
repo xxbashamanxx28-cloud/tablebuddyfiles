@@ -1,4 +1,10 @@
-{%- comment -%} Generated design tokens: color schemes, typography, layout. Regenerated whenever theme settings change. {%- endcomment -%}
+{%- comment -%}
+  Design tokens (color schemes, typography, layout) as CSS custom properties.
+  Rendered inline via a style tag in every layout — NOT as a separate .css.liquid
+  asset, since Shopify does not reliably Liquid-process .css.liquid asset files
+  the way a layout/section file is processed. Keeping this inline guarantees the
+  tokens exist before any other stylesheet references them.
+{%- endcomment -%}
 :root {
   --page-width: {{ settings.page_width }}px;
   --space-section: {{ settings.spacing_sections }}px;

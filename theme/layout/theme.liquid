@@ -14,10 +14,12 @@
 
   <script>document.documentElement.classList.remove('no-js');</script>
 
-  {{ 'theme-variables.css.liquid' | asset_url | stylesheet_tag }}
   {{ 'base.css' | asset_url | stylesheet_tag }}
   {{ 'components.css' | asset_url | stylesheet_tag }}
   {{ 'sections.css' | asset_url | stylesheet_tag }}
+  {% style %}
+    {%- render 'theme-style-variables' -%}
+  {% endstyle %}
 
   <script>
     window.Shopify = window.Shopify || {};
