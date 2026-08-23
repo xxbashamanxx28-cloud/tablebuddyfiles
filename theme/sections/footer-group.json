@@ -1,0 +1,18 @@
+{
+  "name": "Footer",
+  "type": "footer",
+  "sections": {
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "color_scheme": "scheme-navy",
+        "heading": "Stay in the loop",
+        "text": "<p>New heights, new bundles, real customer wins — straight to your inbox.</p>"
+      }
+    },
+    "footer": {
+      "type": "footer"
+    }
+  },
+  "order": ["newsletter", "footer"]
+}

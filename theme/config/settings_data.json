@@ -1,0 +1,137 @@
+{
+  "current": "Default",
+  "presets": {
+    "Default": {
+      "logo": "",
+      "logo_width": 150,
+      "favicon": "",
+      "color_navy": "#0B2545",
+      "color_cobalt": "#2A4FE0",
+      "color_aqua": "#16B9C6",
+      "color_sky": "#4FB8F0",
+      "color_white": "#FFFFFF",
+      "color_schemes": {
+        "scheme-paper": {
+          "settings": {
+            "background": "#F7FAFD",
+            "text": "#0B1B2B",
+            "heading": "#0B2545",
+            "muted_text": "#45566E",
+            "border": "#D7E3F0",
+            "card_background": "#FFFFFF",
+            "button_background": "#2A4FE0",
+            "button_text": "#FFFFFF",
+            "button_secondary_background": "#FFFFFF",
+            "button_secondary_text": "#0B2545",
+            "badge_background": "#16B9C6",
+            "badge_text": "#FFFFFF"
+          }
+        },
+        "scheme-white": {
+          "settings": {
+            "background": "#FFFFFF",
+            "text": "#0B1B2B",
+            "heading": "#0B2545",
+            "muted_text": "#45566E",
+            "border": "#E4ECF5",
+            "card_background": "#F7FAFD",
+            "button_background": "#2A4FE0",
+            "button_text": "#FFFFFF",
+            "button_secondary_background": "#F7FAFD",
+            "button_secondary_text": "#0B2545",
+            "badge_background": "#16B9C6",
+            "badge_text": "#FFFFFF"
+          }
+        },
+        "scheme-navy": {
+          "settings": {
+            "background": "#0B2545",
+            "text": "#DCE6F5",
+            "heading": "#FFFFFF",
+            "muted_text": "#9FB3D1",
+            "border": "#1E3A66",
+            "card_background": "#12356B",
+            "button_background": "#16B9C6",
+            "button_text": "#0B2545",
+            "button_secondary_background": "transparent",
+            "button_secondary_text": "#FFFFFF",
+            "badge_background": "#4FB8F0",
+            "badge_text": "#0B2545"
+          }
+        },
+        "scheme-cobalt": {
+          "settings": {
+            "background": "#2A4FE0",
+            "text": "#EAF0FF",
+            "heading": "#FFFFFF",
+            "muted_text": "#C7D5FF",
+            "border": "#4D6DEC",
+            "card_background": "#3B62F5",
+            "button_background": "#FFFFFF",
+            "button_text": "#1B3AC4",
+            "button_secondary_background": "transparent",
+            "button_secondary_text": "#FFFFFF",
+            "badge_background": "#16B9C6",
+            "badge_text": "#0B2545"
+          }
+        },
+        "scheme-sky": {
+          "settings": {
+            "background": "#DDF1FC",
+            "text": "#0B2545",
+            "heading": "#0B2545",
+            "muted_text": "#39557B",
+            "border": "#B9E1F5",
+            "card_background": "#FFFFFF",
+            "button_background": "#2A4FE0",
+            "button_text": "#FFFFFF",
+            "button_secondary_background": "#FFFFFF",
+            "button_secondary_text": "#0B2545",
+            "badge_background": "#2A4FE0",
+            "badge_text": "#FFFFFF"
+          }
+        },
+        "scheme-aqua": {
+          "settings": {
+            "background": "#16B9C6",
+            "text": "#04333A",
+            "heading": "#052B31",
+            "muted_text": "#0E4A52",
+            "border": "#3FCAD5",
+            "card_background": "#FFFFFF",
+            "button_background": "#0B2545",
+            "button_text": "#FFFFFF",
+            "button_secondary_background": "transparent",
+            "button_secondary_text": "#052B31",
+            "badge_background": "#0B2545",
+            "badge_text": "#FFFFFF"
+          }
+        }
+      },
+      "type_header_font": "poppins_n7",
+      "heading_scale": 100,
+      "type_body_font": "inter_n4",
+      "body_scale": 100,
+      "page_width": 1280,
+      "spacing_sections": 80,
+      "card_radius": "24px",
+      "button_style": "pill",
+      "product_image_ratio": "square",
+      "show_rating": true,
+      "show_vendor": false,
+      "show_quick_add": true,
+      "show_color_swatches": true,
+      "cart_type": "drawer",
+      "cart_show_notes": true,
+      "free_shipping_threshold": "100",
+      "social_instagram": "https://instagram.com/tablebuddy",
+      "social_facebook": "https://facebook.com/tablebuddy",
+      "social_tiktok": "https://tiktok.com/@tablebuddy",
+      "social_youtube": "",
+      "social_pinterest": "",
+      "badge_bestseller_text": "Bestseller",
+      "badge_new_text": "New",
+      "badge_sale_text": "Sale"
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{%- liquid
+  assign menu = section.settings.menu
+-%}
+<header class="site-header color-{{ section.settings.color_scheme }}">
+  <div class="page-width">
+    <div class="site-header__row">
+      <a href="{{ routes.root_url }}" class="site-header__logo">
+        {%- if settings.logo != blank -%}
+          <img src="{{ settings.logo | image_url: width: 300 }}" alt="{{ shop.name }}" width="{{ settings.logo_width }}" style="--logo-width:{{ settings.logo_width }}px;" loading="eager">
+        {%- else -%}
+          <span class="site-header__logo-text">{{ shop.name }}</span>
+        {%- endif -%}
+      </a>
+
+      <nav class="site-header__nav" aria-label="Main">
+        <ul class="site-header__nav-list">
+          {%- for link in menu.links -%}
+            <li class="site-header__nav-item">
+              <a href="{{ link.url }}" class="site-header__nav-link"
+                 {%- if link.links.size > 0 %} aria-haspopup="true" aria-expanded="false" aria-controls="mega-menu-{{ link.handle }}"{% endif -%}>
+                {{ link.title }}
+                {%- if link.links.size > 0 -%}{%- render 'icon', name: 'chevron-down', size: 16 -%}{%- endif -%}
+              </a>
+              {%- if link.links.size > 0 -%}
+                {%- liquid
+                  assign promo_image = blank
+                  assign promo_heading = blank
+                  assign promo_link = blank
+                  for block in section.blocks
+                    if block.type == 'menu_promo' and block.settings.menu_handle == link.handle
+                      assign promo_image = block.settings.image
+                      assign promo_heading = block.settings.heading
+                      assign promo_link = block.settings.link
+                    endif
+                  endfor
+                -%}
+                {%- render 'header-mega-menu', link: link, promo_image: promo_image, promo_heading: promo_heading, promo_link: promo_link -%}
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+
+      <div class="site-header__actions">
+        <button type="button" class="icon-btn" data-open-drawer="search-drawer" aria-label="{{ 'general.search.search' | t }}">
+          {%- render 'icon', name: 'search' -%}
+        </button>
+        <a href="{{ routes.account_url }}" class="icon-btn" aria-label="{{ 'header.account' | t }}">
+          {%- render 'icon', name: 'account' -%}
+        </a>
+        <button type="button" class="icon-btn" data-open-drawer="cart-drawer" aria-label="{{ 'header.cart' | t }}" style="position:relative;">
+          {%- render 'icon', name: 'cart' -%}
+          <span class="cart-count" data-cart-count {% if cart.item_count == 0 %}hidden{% endif %}>{{ cart.item_count }}</span>
+        </button>
+        <button type="button" class="icon-btn site-header__menu-toggle" data-open-drawer="mobile-nav-drawer" aria-label="{{ 'header.menu' | t }}">
+          {%- render 'icon', name: 'menu' -%}
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+{%- render 'header-drawer', menu: menu -%}
+{%- render 'search-drawer' -%}
+
+{% schema %}
+{
+  "name": "Header",
+  "tag": "div",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-white" }
+  ],
+  "blocks": [
+    {
+      "type": "menu_promo",
+      "name": "Menu promo image",
+      "settings": [
+        { "type": "text", "id": "menu_handle", "label": "Menu item handle to attach to", "info": "Must match the handle of a top-level menu item with a dropdown, e.g. shop-by-use" },
+        { "type": "image_picker", "id": "image", "label": "Promo image" },
+        { "type": "text", "id": "heading", "label": "Promo caption" },
+        { "type": "url", "id": "link", "label": "Promo link" }
+      ]
+    }
+  ]
+}
+{% endschema %}

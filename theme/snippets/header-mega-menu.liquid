@@ -1,0 +1,25 @@
+{%- comment -%} Renders the desktop mega menu dropdown for one top-level link. Accepts: link, promo_image, promo_heading, promo_link {%- endcomment -%}
+<div class="mega-menu" id="mega-menu-{{ link.handle }}">
+  {%- for child in link.links -%}
+    <div class="mega-menu__col">
+      {%- if child.links.size > 0 -%}
+        <p class="mega-menu__col-title">{{ child.title }}</p>
+        <div class="mega-menu__links">
+          {%- for grandchild in child.links -%}
+            <a href="{{ grandchild.url }}">{{ grandchild.title }}</a>
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <div class="mega-menu__links">
+          <a href="{{ child.url }}" class="mega-menu__col-title" style="text-transform:none;letter-spacing:0;font-size:0.98rem;color:var(--cs-text);font-weight:700;">{{ child.title }}</a>
+        </div>
+      {%- endif -%}
+    </div>
+  {%- endfor -%}
+  {%- if promo_image != blank -%}
+    <a href="{{ promo_link | default: link.url }}" class="mega-menu__promo">
+      <img src="{{ promo_image | image_url: width: 480 }}" alt="{{ promo_heading | escape }}" loading="lazy" width="480" height="360">
+      {%- if promo_heading != blank -%}<span class="mega-menu__promo-caption">{{ promo_heading }}</span>{%- endif -%}
+    </a>
+  {%- endif -%}
+</div>

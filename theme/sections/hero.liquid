@@ -1,0 +1,63 @@
+<div class="color-{{ section.settings.color_scheme }}">
+  <div class="page-width section section--tight">
+    <div class="hero card">
+      <div class="hero__content">
+        {%- if section.settings.proof_text != blank -%}
+          <p class="eyebrow flex gap-xs" style="align-items:center;">
+            {%- render 'icon', name: 'star', size: 16 -%}{{ section.settings.proof_text }}
+          </p>
+        {%- endif -%}
+        <h1 class="h1 text-balance">{{ section.settings.heading | default: 'sections.hero.default_heading' | t }}</h1>
+        {%- if section.settings.subheading != blank -%}
+          <p style="font-size:1.15rem;max-width:46ch;" class="text-muted">{{ section.settings.subheading }}</p>
+        {%- endif -%}
+        <div class="hero__actions">
+          {%- if section.settings.button_label != blank -%}
+            <a href="{{ section.settings.button_link | default: '#' }}" class="btn btn--primary">{{ section.settings.button_label }}</a>
+          {%- endif -%}
+          {%- if section.settings.button_label_2 != blank -%}
+            <a href="{{ section.settings.button_link_2 | default: '#' }}" class="btn btn--secondary">{{ section.settings.button_label_2 }}</a>
+          {%- endif -%}
+        </div>
+        {%- if section.settings.microcopy != blank -%}
+          <p class="text-muted" style="font-size:0.85rem;">{{ section.settings.microcopy }}</p>
+        {%- endif -%}
+      </div>
+      <div class="hero__media">
+        {%- if section.settings.image != blank -%}
+          <img
+            src="{{ section.settings.image | image_url: width: 1200 }}"
+            srcset="{{ section.settings.image | image_url: width: 600 }} 600w, {{ section.settings.image | image_url: width: 900 }} 900w, {{ section.settings.image | image_url: width: 1200 }} 1200w, {{ section.settings.image | image_url: width: 1600 }} 1600w"
+            sizes="(min-width: 900px) 45vw, 100vw"
+            alt="{{ section.settings.image.alt | default: section.settings.heading | escape }}"
+            width="{{ section.settings.image.width }}" height="{{ section.settings.image.height }}"
+            loading="eager" fetchpriority="high">
+        {%- else -%}
+          <img src="{{ 'lifestyle-smart-tan-sofa-laptop-01.png' | asset_url }}" alt="{{ section.settings.heading | escape }}" loading="eager" fetchpriority="high" width="1200" height="1200">
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero",
+  "tag": "section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-sky" },
+    { "type": "text", "id": "proof_text", "label": "Proof line", "default": "Loved by 10,000+ Australian homes" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Six heights. Three angles. Zero setup." },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "The adjustable folding table built for wherever life happens — the sofa, the bed, the desk, the deck." },
+    { "type": "text", "id": "button_label", "label": "Primary button label", "default": "Shop Table Buddy" },
+    { "type": "url", "id": "button_link", "label": "Primary button link" },
+    { "type": "text", "id": "button_label_2", "label": "Secondary button label", "default": "Take the quiz" },
+    { "type": "url", "id": "button_link_2", "label": "Secondary button link" },
+    { "type": "text", "id": "microcopy", "label": "Microcopy", "default": "Free shipping over $100 · 30-day guarantee" },
+    { "type": "image_picker", "id": "image", "label": "Image" }
+  ],
+  "presets": [
+    { "name": "Hero" }
+  ]
+}
+{% endschema %}

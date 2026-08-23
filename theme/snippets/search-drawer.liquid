@@ -1,0 +1,23 @@
+<div class="drawer" data-side="top" id="search-drawer" aria-hidden="true" aria-label="Search">
+  <div class="page-width" style="padding-block:2rem;">
+    <div class="drawer__header" style="border:0;padding:0 0 1rem;">
+      <span class="h4" style="margin:0;">{{ 'general.search.search' | t }}</span>
+      <button type="button" class="icon-btn" data-close-drawer aria-label="{{ 'general.search.close' | t }}">
+        {%- render 'icon', name: 'close' -%}
+      </button>
+    </div>
+    <tb-predictive-search
+      data-no-results-text="{{ 'general.search.no_results_html' | t: terms: '' | strip_html }}"
+      data-products-label="{{ 'general.search.products' | t }}"
+      data-pages-label="{{ 'general.search.pages' | t }}"
+      data-view-all-text="{{ 'general.search.view_all' | t }}">
+      <form action="{{ routes.search_url }}" method="get" role="search" class="predictive-search__form">
+        {%- render 'icon', name: 'search', size: 20 -%}
+        <input type="search" name="q" placeholder="{{ 'general.search.placeholder' | t }}" aria-label="{{ 'general.search.search' | t }}" autocomplete="off">
+        <input type="hidden" name="type" value="product,page,article">
+        <button type="submit" class="btn btn--primary btn--sm">{{ 'general.search.submit' | t }}</button>
+      </form>
+      <div data-search-results class="predictive-search__results" hidden style="position:static;box-shadow:none;border:0;margin-top:1rem;padding:0;"></div>
+    </tb-predictive-search>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+{%- comment -%} Accepts: variant (variant or product), show_from (bool) {%- endcomment -%}
+{%- liquid
+  assign target = variant | default: product.selected_or_first_available_variant
+  assign compare = target.compare_at_price
+  assign on_sale = false
+  if compare > target.price
+    assign on_sale = true
+  endif
+-%}
+<span class="price {% if on_sale %}price--on-sale{% endif %}" data-price-wrap>
+  {%- if show_from and product.variants.size > 1 and product.price_varies -%}
+    <span class="visually-hidden">{{ 'products.product.starting_at' | t: price: '' }}</span>
+  {%- endif -%}
+  <span class="price__regular" data-price>{{ target.price | money }}</span>
+  {%- if on_sale -%}
+    <span class="price__compare" data-compare-price>{{ compare | money }}</span>
+    <span class="badge">{{ settings.badge_sale_text | default: 'Sale' }}</span>
+  {%- endif -%}
+</span>

@@ -1,0 +1,160 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "color_scheme": "scheme-sky",
+        "proof_text": "Loved by thousands of Australian homes",
+        "heading": "Six heights. Three angles. Zero setup.",
+        "subheading": "The adjustable folding table built for wherever life happens — the sofa, the bed, the desk, the deck.",
+        "button_label": "Shop Table Buddy",
+        "button_link": "/collections/all",
+        "button_label_2": "Take the quiz",
+        "button_link_2": "/pages/product-finder-quiz",
+        "microcopy": "Free shipping over $100 · 30-day guarantee"
+      }
+    },
+    "press-logos": {
+      "type": "press-logos",
+      "settings": { "color_scheme": "scheme-paper", "label": "As featured in" },
+      "blocks": {
+        "logo-1": { "type": "logo", "settings": { "name": "[ Publication 1 ]" } },
+        "logo-2": { "type": "logo", "settings": { "name": "[ Publication 2 ]" } },
+        "logo-3": { "type": "logo", "settings": { "name": "[ Publication 3 ]" } },
+        "logo-4": { "type": "logo", "settings": { "name": "[ Publication 4 ]" } },
+        "logo-5": { "type": "logo", "settings": { "name": "[ Publication 5 ]" } }
+      },
+      "block_order": ["logo-1", "logo-2", "logo-3", "logo-4", "logo-5"]
+    },
+    "ugc-video-row": {
+      "type": "ugc-video-row",
+      "settings": { "color_scheme": "scheme-paper", "eyebrow": "Real Table Buddy owners", "heading": "From our customers to your couch" },
+      "blocks": {
+        "v1": { "type": "video", "settings": { "caption": "@homeoffice_hayley" } },
+        "v2": { "type": "video", "settings": { "caption": "@studywithsam" } },
+        "v3": { "type": "video", "settings": { "caption": "@gamernightsau" } },
+        "v4": { "type": "video", "settings": { "caption": "@thefoldeddesk" } },
+        "v5": { "type": "video", "settings": { "caption": "@couchworkerco" } },
+        "v6": { "type": "video", "settings": { "caption": "@snacktablediaries" } }
+      },
+      "block_order": ["v1", "v2", "v3", "v4", "v5", "v6"]
+    },
+    "featured-products": {
+      "type": "featured-products",
+      "settings": {
+        "color_scheme": "scheme-paper",
+        "eyebrow": "For every room",
+        "heading": "The tables that get the job done",
+        "text": "Three models. One adjustable design. Pick the level of comfort that suits how you use it.",
+        "view_all_link": "/collections/all",
+        "view_all_label": "Browse all products"
+      },
+      "blocks": {
+        "p1": { "type": "product", "settings": {} },
+        "p2": { "type": "product", "settings": {} },
+        "p3": { "type": "product", "settings": {} }
+      },
+      "block_order": ["p1", "p2", "p3"]
+    },
+    "benefit-split": {
+      "type": "benefit-split",
+      "settings": {
+        "color_scheme": "scheme-navy",
+        "eyebrow": "Why Table Buddy",
+        "heading": "Built to adjust to you, not the other way around",
+        "button_label": "Shop Table Buddy",
+        "button_link": "/collections/all",
+        "guarantee_text": "30-day money-back guarantee on every order"
+      },
+      "blocks": {
+        "b1": { "type": "benefit", "settings": { "icon": "height", "title": "Six height positions", "text": "From sofa-side snacking height to standing desk height, adjust in seconds." } },
+        "b2": { "type": "benefit", "settings": { "icon": "angle", "title": "Three tabletop angles", "text": "Flat for eating and gaming, tilted for reading, writing and hobbies." } },
+        "b3": { "type": "benefit", "settings": { "icon": "no-tools", "title": "No-tool setup", "text": "Unfold, click the legs into place, and you're done — no screws, no manual." } },
+        "b4": { "type": "benefit", "settings": { "icon": "fold", "title": "Compact folding storage", "text": "Folds flat to slide beside the couch, under the bed, or in the closet." } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4"]
+    },
+    "compare-table": {
+      "type": "compare-table",
+      "settings": {
+        "color_scheme": "scheme-paper",
+        "eyebrow": "Compare models",
+        "heading": "Find the right Table Buddy for you",
+        "text": "Compare features and pricing to choose the model that's right for your routine.",
+        "button_label": "See full comparison",
+        "button_link": "/pages/compare-models"
+      },
+      "blocks": {
+        "m1": { "type": "model", "settings": { "name": "Table Buddy Regular", "price_text": "$—", "height_positions": "6", "angles": "3", "cup_holder": false, "footrest": false, "colours": "9" } },
+        "m2": { "type": "model", "settings": { "name": "Table Buddy Smart", "price_text": "$—", "height_positions": "6", "angles": "3", "cup_holder": true, "footrest": false, "colours": "3" } },
+        "m3": { "type": "model", "settings": { "name": "Table Buddy Executive", "price_text": "$—", "height_positions": "6", "angles": "3", "cup_holder": true, "footrest": true, "colours": "2" } }
+      },
+      "block_order": ["m1", "m2", "m3"]
+    },
+    "promo-split": {
+      "type": "promo-split",
+      "settings": {
+        "color_scheme": "scheme-sky",
+        "media_side": "right",
+        "eyebrow": "A bundle of favourites",
+        "heading": "The whole setup",
+        "text": "<p>Everything you need for working, snacking and unwinding — bundled and ready to fold away.</p>",
+        "button_label": "Shop bundles",
+        "button_link": "/collections/bundles"
+      }
+    },
+    "campaign-banner": {
+      "type": "campaign-banner",
+      "settings": {
+        "color_scheme": "scheme-aqua",
+        "heading": "Build your own bundle",
+        "text": "Mix a model, a colour and an accessory routine that's entirely yours.",
+        "button_label": "Start building",
+        "button_link": "/pages/build-your-own-bundle"
+      }
+    },
+    "reviews-carousel": {
+      "type": "reviews-carousel",
+      "settings": {
+        "color_scheme": "scheme-paper",
+        "eyebrow": "Customer love",
+        "heading": "See what the buzz is about",
+        "show_summary": true,
+        "average_rating": 4.8,
+        "review_count": 214
+      },
+      "blocks": {
+        "r1": { "type": "review", "settings": { "rating": 5, "quote": "I work from the couch three days a week now. Six height settings means it's perfect for my laptop and my lunch plate. Took two minutes to set up, no tools.", "author": "Sarah T.", "location": "Brisbane, QLD" } },
+        "r2": { "type": "review", "settings": { "rating": 5, "quote": "Bought the Executive for my dad after his knee surgery — the footrest is genuinely brilliant and the cup holder means his tea doesn't end up on the carpet anymore.", "author": "Michael R.", "location": "Geelong, VIC" } },
+        "r3": { "type": "review", "settings": { "rating": 4, "quote": "Great for gaming nights — the angled setting is perfect for a controller and the tray doesn't wobble even with a monitor on it.", "author": "Priya K.", "location": "Parramatta, NSW" } },
+        "r4": { "type": "review", "settings": { "rating": 5, "quote": "Folds completely flat and slides behind the couch. My apartment is tiny so this mattered more than anything else — genuinely space-saving.", "author": "Josh L.", "location": "Fremantle, WA" } },
+        "r5": { "type": "review", "settings": { "rating": 5, "quote": "Ordered the Smart in sky blue for my daughter's room — she does her homework on it every afternoon now instead of lying on the bed.", "author": "Amanda F.", "location": "Adelaide, SA" } }
+      },
+      "block_order": ["r1", "r2", "r3", "r4", "r5"]
+    },
+    "social-gallery": {
+      "type": "social-gallery",
+      "settings": { "color_scheme": "scheme-paper", "eyebrow": "Tag us", "heading": "Let's be social", "handle": "@tablebuddy" },
+      "blocks": {
+        "s1": { "type": "image", "settings": {} },
+        "s2": { "type": "image", "settings": {} },
+        "s3": { "type": "image", "settings": {} },
+        "s4": { "type": "image", "settings": {} },
+        "s5": { "type": "image", "settings": {} }
+      },
+      "block_order": ["s1", "s2", "s3", "s4", "s5"]
+    }
+  },
+  "order": [
+    "hero",
+    "press-logos",
+    "ugc-video-row",
+    "featured-products",
+    "benefit-split",
+    "compare-table",
+    "promo-split",
+    "campaign-banner",
+    "reviews-carousel",
+    "social-gallery"
+  ]
+}

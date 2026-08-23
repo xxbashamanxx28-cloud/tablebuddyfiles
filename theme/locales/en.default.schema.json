@@ -1,0 +1,86 @@
+{
+  "settings": {
+    "logo": {
+      "name": "Logo",
+      "logo_image": "Logo image",
+      "logo_width": "Logo width",
+      "favicon": "Favicon"
+    },
+    "colors": {
+      "name": "Brand colors",
+      "brand_header": "Base brand palette",
+      "navy": "Navy",
+      "cobalt": "Cobalt",
+      "aqua": "Aqua",
+      "sky": "Sky blue",
+      "white": "White"
+    },
+    "color_schemes": {
+      "name": "Color schemes",
+      "background": "Background",
+      "text": "Text",
+      "heading": "Headings",
+      "muted_text": "Muted text",
+      "border": "Borders",
+      "card_background": "Card background",
+      "button_background": "Primary button background",
+      "button_text": "Primary button text",
+      "button_secondary_background": "Secondary button background",
+      "button_secondary_text": "Secondary button text",
+      "badge_background": "Badge background",
+      "badge_text": "Badge text"
+    },
+    "typography": {
+      "name": "Typography",
+      "headings": "Headings",
+      "body": "Body text",
+      "font": "Font",
+      "scale": "Size scale"
+    },
+    "layout": {
+      "name": "Layout",
+      "page_width": "Page width",
+      "spacing_sections": "Space between sections",
+      "card_radius": "Corner roundness",
+      "radius_soft": "Soft",
+      "radius_substantial": "Substantial",
+      "radius_bold": "Bold"
+    },
+    "buttons": {
+      "name": "Buttons",
+      "shape": "Shape",
+      "pill": "Pill",
+      "rounded": "Rounded",
+      "square": "Square"
+    },
+    "product_card": {
+      "name": "Product cards",
+      "image_ratio": "Image ratio",
+      "square": "Square",
+      "portrait": "Portrait",
+      "natural": "Natural",
+      "show_rating": "Show star rating",
+      "show_vendor": "Show vendor",
+      "show_quick_add": "Show quick add button",
+      "show_color_swatches": "Show color swatches"
+    },
+    "cart": {
+      "name": "Cart",
+      "type": "Cart type",
+      "drawer": "Drawer",
+      "page": "Page",
+      "show_notes": "Show order notes field",
+      "free_shipping_threshold": "Free shipping threshold",
+      "free_shipping_threshold_info": "Amount in your store's currency. Leave blank to hide the free shipping progress bar."
+    },
+    "social": {
+      "name": "Social media"
+    },
+    "badges": {
+      "name": "Product badges",
+      "bestseller_text": "Bestseller badge text",
+      "new_text": "New badge text",
+      "sale_text": "Sale badge text"
+    }
+  }
+}

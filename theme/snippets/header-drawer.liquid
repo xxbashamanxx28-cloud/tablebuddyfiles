@@ -1,0 +1,47 @@
+{%- comment -%} Accepts: menu (link_list object) {%- endcomment -%}
+<div class="drawer" data-side="left" id="mobile-nav-drawer" aria-hidden="true" aria-label="Site menu">
+  <div class="drawer__header">
+    <span class="site-header__logo-text">{{ shop.name }}</span>
+    <button type="button" class="icon-btn" data-close-drawer aria-label="{{ 'header.close_menu' | t }}">
+      {%- render 'icon', name: 'close' -%}
+    </button>
+  </div>
+  <div class="drawer__body">
+    <nav aria-label="Mobile">
+      <ul class="mobile-nav__list">
+        {%- for link in menu.links -%}
+          <li class="mobile-nav__item">
+            {%- if link.links.size > 0 -%}
+              <div class="mobile-nav__link">
+                <a href="{{ link.url }}">{{ link.title }}</a>
+                <button type="button" data-mobile-submenu-toggle aria-expanded="false" aria-label="Toggle {{ link.title }} submenu" class="icon-btn">
+                  {%- render 'icon', name: 'chevron-down', size: 18 -%}
+                </button>
+              </div>
+              <div class="mobile-nav__sublist">
+                {%- for child in link.links -%}
+                  <a href="{{ child.url }}">{{ child.title }}</a>
+                  {%- for grandchild in child.links -%}
+                    <a href="{{ grandchild.url }}" style="padding-left:1.5rem;">{{ grandchild.title }}</a>
+                  {%- endfor -%}
+                {%- endfor -%}
+              </div>
+            {%- else -%}
+              <a href="{{ link.url }}" class="mobile-nav__link">{{ link.title }}</a>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+    <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:0.75rem;">
+      <a href="{{ routes.account_url }}" class="btn btn--secondary btn--block">{{ 'header.account' | t }}</a>
+    </div>
+  </div>
+  <div class="drawer__footer">
+    <div class="site-footer__social">
+      {%- if settings.social_instagram != blank -%}<a href="{{ settings.social_instagram }}" class="icon-btn" aria-label="Instagram">{%- render 'icon', name: 'instagram' -%}</a>{%- endif -%}
+      {%- if settings.social_facebook != blank -%}<a href="{{ settings.social_facebook }}" class="icon-btn" aria-label="Facebook">{%- render 'icon', name: 'facebook' -%}</a>{%- endif -%}
+      {%- if settings.social_tiktok != blank -%}<a href="{{ settings.social_tiktok }}" class="icon-btn" aria-label="TikTok">{%- render 'icon', name: 'tiktok' -%}</a>{%- endif -%}
+    </div>
+  </div>
+</div>

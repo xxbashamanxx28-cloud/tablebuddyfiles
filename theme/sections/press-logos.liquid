@@ -1,0 +1,48 @@
+<div class="color-{{ section.settings.color_scheme }}">
+  <div class="page-width section--tight" style="padding-block:2.5rem;">
+    {%- if section.settings.label != blank -%}<p class="press-logos__label">{{ section.settings.label }}</p>{%- endif -%}
+    <div class="press-logos">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.logo != blank -%}
+          <img src="{{ block.settings.logo | image_url: width: 200 }}" alt="{{ block.settings.name | default: 'Press logo' }}" loading="lazy" width="120" height="22" {{ block.shopify_attributes }}>
+        {%- else -%}
+          <span class="eyebrow" style="opacity:0.5;" {{ block.shopify_attributes }}>{{ block.settings.name | default: '[ Add logo ]' }}</span>
+        {%- endif -%}
+      {%- else -%}
+        <p class="text-muted" style="text-align:center;width:100%;">Placeholder — add press/media logos in the theme editor (e.g. news.com.au, Better Homes & Gardens, Choice, news outlets that have featured Table Buddy).</p>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Press logos",
+  "tag": "section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-paper" },
+    { "type": "text", "id": "label", "label": "Label", "default": "As featured in" }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        { "type": "image_picker", "id": "logo", "label": "Logo image" },
+        { "type": "text", "id": "name", "label": "Publication name (fallback text)", "info": "Shown until a logo image is uploaded. Configurable placeholder." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Press logos",
+      "blocks": [
+        { "type": "logo", "settings": { "name": "[ Publication 1 ]" } },
+        { "type": "logo", "settings": { "name": "[ Publication 2 ]" } },
+        { "type": "logo", "settings": { "name": "[ Publication 3 ]" } },
+        { "type": "logo", "settings": { "name": "[ Publication 4 ]" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

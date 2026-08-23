@@ -1,0 +1,76 @@
+{%- assign current_year = 'now' | date: '%Y' -%}
+<footer class="site-footer color-{{ section.settings.color_scheme }}">
+  <div class="page-width">
+    <div class="site-footer__top">
+      <div class="site-footer__col site-footer__brand">
+        {%- if settings.logo != blank -%}
+          <img src="{{ settings.logo | image_url: width: 200 }}" alt="{{ shop.name }}" width="140" loading="lazy">
+        {%- else -%}
+          <span class="site-header__logo-text">{{ shop.name }}</span>
+        {%- endif -%}
+        <p>{{ section.settings.brand_text | default: 'Adjustable folding tables built for wherever life happens — the sofa, the bed, the desk, the deck.' }}</p>
+        <div class="site-footer__social">
+          {%- if settings.social_instagram != blank -%}<a href="{{ settings.social_instagram }}" class="icon-btn" aria-label="Instagram">{%- render 'icon', name: 'instagram' -%}</a>{%- endif -%}
+          {%- if settings.social_facebook != blank -%}<a href="{{ settings.social_facebook }}" class="icon-btn" aria-label="Facebook">{%- render 'icon', name: 'facebook' -%}</a>{%- endif -%}
+          {%- if settings.social_tiktok != blank -%}<a href="{{ settings.social_tiktok }}" class="icon-btn" aria-label="TikTok">{%- render 'icon', name: 'tiktok' -%}</a>{%- endif -%}
+          {%- if settings.social_youtube != blank -%}<a href="{{ settings.social_youtube }}" class="icon-btn" aria-label="YouTube">{%- render 'icon', name: 'youtube' -%}</a>{%- endif -%}
+          {%- if settings.social_pinterest != blank -%}<a href="{{ settings.social_pinterest }}" class="icon-btn" aria-label="Pinterest">{%- render 'icon', name: 'pinterest' -%}</a>{%- endif -%}
+        </div>
+      </div>
+
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'link_list' -%}
+          <div class="site-footer__col" {{ block.shopify_attributes }}>
+            <h3>{{ block.settings.title }}</h3>
+            <ul>
+              {%- for link in block.settings.menu.links -%}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>{{ 'footer.copyright_html' | t: year: current_year }}</p>
+      <div class="flex gap-sm" style="align-items:center;">
+        <a href="{{ shop.url }}/policies/privacy-policy">Privacy</a>
+        <a href="{{ shop.url }}/policies/terms-of-service">Terms</a>
+      </div>
+      <div class="site-footer__payment">
+        {%- for type in shop.enabled_payment_types -%}
+          {{ type | payment_type_svg_tag: class: 'payment-icon' }}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "tag": "div",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-paper" },
+    { "type": "textarea", "id": "brand_text", "label": "Brand text" }
+  ],
+  "blocks": [
+    {
+      "type": "link_list",
+      "name": "Link list",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Heading", "default": "Shop" },
+        { "type": "link_list", "id": "menu", "label": "Menu" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "link_list", "settings": { "title": "Shop" } },
+      { "type": "link_list", "settings": { "title": "Help" } },
+      { "type": "link_list", "settings": { "title": "Company" } }
+    ]
+  }
+}
+{% endschema %}

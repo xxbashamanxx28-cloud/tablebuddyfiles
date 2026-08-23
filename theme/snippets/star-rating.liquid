@@ -1,0 +1,29 @@
+{%- comment -%} Accepts: rating (0-5 float), count (int), size (px) {%- endcomment -%}
+{%- liquid
+  assign rating = rating | default: 5
+  assign count = count | default: 0
+  assign full_stars = rating | floor
+  assign has_half = false
+  assign remainder = rating | minus: full_stars
+  if remainder >= 0.25 and remainder < 0.75
+    assign has_half = true
+  elsif remainder >= 0.75
+    assign full_stars = full_stars | plus: 1
+  endif
+  assign empty_stars = 5 | minus: full_stars
+  if has_half
+    assign empty_stars = empty_stars | minus: 1
+  endif
+-%}
+<span class="star-rating" role="img" aria-label="{{ rating }} out of 5 stars{% if count > 0 %}, {{ count }} reviews{% endif %}">
+  <span class="star-rating__stars" aria-hidden="true">
+    {%- for i in (1..full_stars) -%}{%- render 'icon', name: 'star', size: size | default: 15 -%}{%- endfor -%}
+    {%- if has_half -%}
+      <svg width="{{ size | default: 15 }}" height="{{ size | default: 15 }}" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="half"><stop offset="50%" stop-color="currentColor"/><stop offset="50%" stop-color="transparent"/></linearGradient></defs><path fill="url(#half)" stroke="currentColor" stroke-width="1" d="M12 2.5l2.9 6 6.6.7-5 4.5 1.3 6.5L12 16.9 6.2 20.2l1.3-6.5-5-4.5 6.6-.7z"/></svg>
+    {%- endif -%}
+    {%- for i in (1..empty_stars) -%}
+      <svg width="{{ size | default: 15 }}" height="{{ size | default: 15 }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.7-5 4.5 1.3 6.5L12 16.9 6.2 20.2l1.3-6.5-5-4.5 6.6-.7z"/></svg>
+    {%- endfor -%}
+  </span>
+  {%- if count > 0 -%}<span class="star-rating__count">({{ count }})</span>{%- endif -%}
+</span>

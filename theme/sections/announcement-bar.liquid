@@ -1,0 +1,49 @@
+<div class="announcement-bar color-{{ section.settings.color_scheme }}" data-announcement-bar {{ block.shopify_attributes }}>
+  <div class="announcement-bar__track">
+    {%- for block in section.blocks -%}
+      <div class="announcement-bar__slide" {{ block.shopify_attributes }}>
+        {%- if block.settings.link != blank -%}
+          <a href="{{ block.settings.link }}">{{ block.settings.text }}</a>
+        {%- else -%}
+          <span>{{ block.settings.text }}</span>
+        {%- endif -%}
+      </div>
+    {%- else -%}
+      <div class="announcement-bar__slide">
+        <span>{{ 'sections.announcement_bar.default_message' | t }}</span>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-navy"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Message",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Message", "default": "Free Australia-wide shipping on orders over $100" },
+        { "type": "url", "id": "link", "label": "Link (optional)" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "message", "settings": { "text": "Free Australia-wide shipping on orders over $100" } },
+      { "type": "message", "settings": { "text": "Six height positions. Three tabletop angles. No tools required." } },
+      { "type": "message", "settings": { "text": "30-day money-back guarantee on every Table Buddy" } }
+    ]
+  }
+}
+{% endschema %}

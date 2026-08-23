@@ -1,0 +1,43 @@
+{%- comment -%} Generated design tokens: color schemes, typography, layout. Regenerated whenever theme settings change. {%- endcomment -%}
+:root {
+  --page-width: {{ settings.page_width }}px;
+  --space-section: {{ settings.spacing_sections }}px;
+  --radius-card: {{ settings.card_radius }};
+  --radius-button: {% if settings.button_style == 'pill' %}999px{% elsif settings.button_style == 'rounded' %}12px{% else %}2px{% endif %};
+  --radius-input: 12px;
+  --radius-badge: 999px;
+  --color-brand-navy: {{ settings.color_navy.red }}, {{ settings.color_navy.green }}, {{ settings.color_navy.blue }};
+  --color-brand-cobalt: {{ settings.color_cobalt.red }}, {{ settings.color_cobalt.green }}, {{ settings.color_cobalt.blue }};
+  --color-brand-aqua: {{ settings.color_aqua.red }}, {{ settings.color_aqua.green }}, {{ settings.color_aqua.blue }};
+  --color-brand-sky: {{ settings.color_sky.red }}, {{ settings.color_sky.green }}, {{ settings.color_sky.blue }};
+  --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+  --font-heading-weight: {{ settings.type_header_font.weight }};
+  --font-heading-style: {{ settings.type_header_font.style }};
+  --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+  --font-body-weight: {{ settings.type_body_font.weight }};
+  --font-body-style: {{ settings.type_body_font.style }};
+  --heading-scale: {{ settings.heading_scale }}%;
+  --body-scale: {{ settings.body_scale }}%;
+}
+
+{{ settings.type_header_font | font_face: font_display: 'swap' }}
+{{ settings.type_body_font | font_face: font_display: 'swap' }}
+
+{%- for scheme in settings.color_schemes -%}
+  .color-{{ scheme.id }} {
+    --cs-background: {{ scheme.settings.background }};
+    --cs-text: {{ scheme.settings.text }};
+    --cs-heading: {{ scheme.settings.heading }};
+    --cs-muted: {{ scheme.settings.muted_text }};
+    --cs-border: {{ scheme.settings.border }};
+    --cs-card: {{ scheme.settings.card_background }};
+    --cs-btn-bg: {{ scheme.settings.button_background }};
+    --cs-btn-text: {{ scheme.settings.button_text }};
+    --cs-btn2-bg: {{ scheme.settings.button_secondary_background }};
+    --cs-btn2-text: {{ scheme.settings.button_secondary_text }};
+    --cs-badge-bg: {{ scheme.settings.badge_background }};
+    --cs-badge-text: {{ scheme.settings.badge_text }};
+    background: var(--cs-background);
+    color: var(--cs-text);
+  }
+{%- endfor -%}

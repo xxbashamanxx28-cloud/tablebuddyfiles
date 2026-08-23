@@ -1,0 +1,67 @@
+<div class="color-{{ section.settings.color_scheme }}">
+  <div class="page-width section">
+    <div class="section-header {% if section.settings.center_header %}section-header--center{% else %}section-header--row{% endif %}">
+      <div>
+        <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+        <h2 class="h2">{{ section.settings.heading }}</h2>
+        {%- if section.settings.text != blank -%}<p class="text-muted" style="margin-top:0.5rem;max-width:56ch;">{{ section.settings.text }}</p>{%- endif -%}
+      </div>
+      {%- if section.settings.view_all_link != blank -%}
+        <a href="{{ section.settings.view_all_link }}" class="link-arrow">
+          {{ section.settings.view_all_label | default: 'Browse all products' }}
+          {%- render 'icon', name: 'arrow-right', size: 18 -%}
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="grid grid--3">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.product != blank -%}
+          {%- render 'product-card', product: block.settings.product -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.view_all_link != blank and section.settings.center_header -%}
+      <div class="flex-center" style="margin-top:2rem;">
+        <a href="{{ section.settings.view_all_link }}" class="btn btn--secondary">{{ section.settings.view_all_label | default: 'Browse all products' }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Featured products",
+  "tag": "section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-paper" },
+    { "type": "checkbox", "id": "center_header", "label": "Center heading", "default": false },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "For every room" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The table that gets the job done" },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "url", "id": "view_all_link", "label": "\"View all\" link" },
+    { "type": "text", "id": "view_all_label", "label": "\"View all\" label", "default": "Browse all products" }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Product" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Featured products",
+      "blocks": [
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" }
+      ]
+    }
+  ]
+}
+{% endschema %}

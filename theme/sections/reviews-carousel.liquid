@@ -1,0 +1,68 @@
+<div class="color-{{ section.settings.color_scheme }}">
+  <div class="page-width section">
+    <div class="section-header section-header--center">
+      <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2 class="h2">{{ section.settings.heading }}</h2>
+      {%- if section.settings.show_summary -%}
+        <div class="reviews-summary">
+          {%- render 'star-rating', rating: section.settings.average_rating, count: section.settings.review_count, size: 20 -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="carousel" data-carousel>
+      <div class="carousel__track">
+        {%- for block in section.blocks -%}
+          <div class="review-card card card--pad" {{ block.shopify_attributes }}>
+            {%- render 'star-rating', rating: block.settings.rating, size: 15 -%}
+            <p class="review-card__quote">&ldquo;{{ block.settings.quote }}&rdquo;</p>
+            <p class="review-card__meta">{{ block.settings.author }}{% if block.settings.location != blank %} · {{ block.settings.location }}{% endif %}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+      <div class="carousel__nav" style="justify-content:center;margin-top:1.5rem;">
+        <button type="button" data-carousel-prev aria-label="Previous reviews">{%- render 'icon', name: 'chevron-left', size: 18 -%}</button>
+        <button type="button" data-carousel-next aria-label="Next reviews">{%- render 'icon', name: 'chevron-right', size: 18 -%}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Reviews carousel",
+  "tag": "section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-paper" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Customer love" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "See what the buzz is about" },
+    { "type": "checkbox", "id": "show_summary", "label": "Show aggregate rating", "default": true },
+    { "type": "range", "id": "average_rating", "label": "Average rating", "min": 0, "max": 5, "step": 0.1, "default": 4.8 },
+    { "type": "number", "id": "review_count", "label": "Review count", "default": 214, "info": "Placeholder — replace with your real review count once a reviews app (e.g. Judge.me, Loox) is connected." }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "range", "id": "rating", "label": "Rating", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "textarea", "id": "quote", "label": "Quote", "info": "Placeholder review — swap for genuine customer feedback once available." },
+        { "type": "text", "id": "author", "label": "Author" },
+        { "type": "text", "id": "location", "label": "Location" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews carousel",
+      "blocks": [
+        { "type": "review", "settings": { "rating": 5, "quote": "I work from the couch three days a week now. Six height settings means it's perfect for my laptop and my lunch plate. Took two minutes to set up, no tools.", "author": "Sarah T.", "location": "Brisbane, QLD" } },
+        { "type": "review", "settings": { "rating": 5, "quote": "Bought the Executive for my dad after his knee surgery — the footrest is genuinely brilliant and the cup holder means his tea doesn't end up on the carpet anymore.", "author": "Michael R.", "location": "Geelong, VIC" } },
+        { "type": "review", "settings": { "rating": 4, "quote": "Great for gaming nights — angled setting is perfect for the controller and the tray doesn't wobble even with a monitor on it.", "author": "Priya K.", "location": "Parramatta, NSW" } },
+        { "type": "review", "settings": { "rating": 5, "quote": "Folds completely flat and slides behind the couch. My apartment is tiny so this mattered more than anything else — genuinely space-saving.", "author": "Josh L.", "location": "Fremantle, WA" } },
+        { "type": "review", "settings": { "rating": 5, "quote": "Ordered the Smart in sky blue for my daughter's room — she does her homework on it every afternoon now instead of lying on the bed.", "author": "Amanda F.", "location": "Adelaide, SA" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

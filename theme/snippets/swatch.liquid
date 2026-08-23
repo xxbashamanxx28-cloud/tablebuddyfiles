@@ -1,0 +1,42 @@
+{%- comment -%}
+  Renders one color/finish swatch circle.
+  Accepts: value (option value string), selected (bool), size
+{%- endcomment -%}
+{%- liquid
+  assign key = value | handleize
+  case key
+    when 'natural', 'oak', 'natural-oak'
+      assign swatch_style = 'background:#D9B98A;'
+    when 'mahogany', 'mahogany-woodgrain'
+      assign swatch_style = 'background:#6B2B22;'
+    when 'sky-blue', 'skyblue'
+      assign swatch_style = 'background:#4FB8F0;'
+    when 'cobalt', 'blue'
+      assign swatch_style = 'background:#2A4FE0;'
+    when 'navy'
+      assign swatch_style = 'background:#0B2545;'
+    when 'black'
+      assign swatch_style = 'background:#111417;'
+    when 'white'
+      assign swatch_style = 'background:#FFFFFF;'
+    when 'pink'
+      assign swatch_style = 'background:#EC1E79;'
+    when 'red'
+      assign swatch_style = 'background:#D42A2A;'
+    when 'aqua'
+      assign swatch_style = 'background:#16B9C6;'
+    when 'mandala', 'mandala-print', 'print'
+      assign swatch_style = 'background:conic-gradient(from 90deg,#EC1E79,#F5A623,#16B9C6,#2A4FE0,#EC1E79);'
+    else
+      assign swatch_style = 'background:#D7E3F0;'
+  endcase
+  assign tag = 'button'
+  if interactive == false
+    assign tag = 'span'
+  endif
+-%}
+{%- if tag == 'button' -%}
+<button type="button" class="swatch{% if selected %} is-selected{% endif %}" style="{{ swatch_style }}width:{{ size | default: 22 }}px;height:{{ size | default: 22 }}px;" title="{{ value }}" aria-label="{{ value }}" aria-pressed="{{ selected | default: false }}"></button>
+{%- else -%}
+<span class="swatch{% if selected %} is-selected{% endif %}" style="{{ swatch_style }}width:{{ size | default: 22 }}px;height:{{ size | default: 22 }}px;" title="{{ value }}" aria-hidden="true"></span>
+{%- endif -%}

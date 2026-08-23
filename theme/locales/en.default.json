@@ -1,0 +1,236 @@
+{
+  "general": {
+    "meta": {
+      "tagline": "Adjustable folding tables for wherever life happens."
+    },
+    "search": {
+      "search": "Search",
+      "placeholder": "Search Table Buddy",
+      "submit": "Submit search",
+      "close": "Close search",
+      "no_results_html": "No results found for “{{ terms }}”. Try a different search.",
+      "results_for_html": "{{ count }} results for “{{ terms }}”",
+      "products": "Products",
+      "pages": "Pages",
+      "view_all": "View all results"
+    },
+    "cart": {
+      "title": "Your cart",
+      "empty": "Your cart is empty",
+      "empty_link": "Continue shopping",
+      "view_cart": "View cart",
+      "checkout": "Checkout",
+      "remove": "Remove",
+      "quantity": "Quantity",
+      "subtotal": "Subtotal",
+      "free_shipping_progress_html": "Add {{ amount }} more for free shipping",
+      "free_shipping_reached": "You've unlocked free shipping!",
+      "order_note": "Add an order note",
+      "note_placeholder": "Delivery instructions, gift notes, etc.",
+      "update": "Update",
+      "close": "Close cart",
+      "items_count": {
+        "one": "{{ count }} item",
+        "other": "{{ count }} items"
+      }
+    },
+    "social": {
+      "follow_us": "Follow us"
+    },
+    "newsletter": {
+      "heading": "Stay in the loop",
+      "text": "New heights, new bundles, real customer wins — straight to your inbox.",
+      "placeholder": "Your email address",
+      "submit": "Subscribe",
+      "success": "You're subscribed — welcome to the crew.",
+      "consent": "By subscribing you agree to receive marketing emails from Table Buddy."
+    },
+    "password_page": {
+      "login_form_heading": "Enter store using password",
+      "login_password_button": "Enter",
+      "login_form_password_label": "Password",
+      "login_form_error": "Wrong password",
+      "admin_link_html": "Are you the store owner? <a href=\"/admin\" class=\"link\">Log in here</a>",
+      "powered_by_shopify_html": "This shop will be powered by {{ shopify }}"
+    },
+    "404": {
+      "title": "Page not found",
+      "subtext": "The page you're looking for has folded away. Let's get you back to something useful.",
+      "link": "Back to home"
+    },
+    "breadcrumbs": {
+      "home": "Home"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "label": "Pagination"
+    },
+    "share": {
+      "share": "Share"
+    }
+  },
+  "header": {
+    "menu": "Menu",
+    "close_menu": "Close menu",
+    "account": "Account",
+    "cart": "Cart",
+    "search": "Search",
+    "shop_all": "Shop all"
+  },
+  "footer": {
+    "shop": "Shop",
+    "help": "Help",
+    "company": "Company",
+    "newsletter_heading": "Stay in the loop",
+    "copyright_html": "&copy; {{ year }} Table Buddy. All rights reserved.",
+    "country_region": "Country/region",
+    "payment_methods": "Payment methods"
+  },
+  "products": {
+    "product": {
+      "sku": "SKU",
+      "price": "Price",
+      "regular_price": "Regular price",
+      "sale_price": "Sale price",
+      "sold_out": "Sold out",
+      "in_stock": "In stock",
+      "low_stock": "Only {{ count }} left",
+      "quantity": "Quantity",
+      "add_to_cart": "Add to cart",
+      "adding": "Adding…",
+      "added": "Added to cart",
+      "unavailable": "Unavailable",
+      "choose_options": "Choose options",
+      "quick_add": "Quick add",
+      "view_details": "View details",
+      "description": "Description",
+      "specifications": "Specifications",
+      "shipping_returns": "Shipping & returns",
+      "reviews": "Reviews",
+      "vendor": "Vendor",
+      "select_color": "Color: {{ value }}",
+      "starting_at": "From {{ price }}",
+      "buy_bundle": "Add bundle to cart",
+      "bundle_savings": "Save {{ amount }} when bundled",
+      "free_shipping_badge": "Free shipping",
+      "money_back_badge": "30-day money-back guarantee",
+      "warranty_badge": "12-month warranty"
+    },
+    "facets": {
+      "filter_and_sort": "Filter and sort",
+      "filters": "Filters",
+      "sort_by": "Sort by",
+      "clear_all": "Clear all",
+      "clear": "Clear",
+      "apply": "Apply",
+      "reset": "Reset",
+      "results_count": {
+        "one": "{{ count }} product",
+        "other": "{{ count }} products"
+      },
+      "sort_options": {
+        "featured": "Featured",
+        "best_selling": "Best selling",
+        "az": "Alphabetically, A-Z",
+        "za": "Alphabetically, Z-A",
+        "price_low_high": "Price, low to high",
+        "price_high_low": "Price, high to low",
+        "newest": "Date, new to old",
+        "oldest": "Date, old to new"
+      }
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "My account",
+      "details": "Account details",
+      "view_addresses": "View addresses",
+      "orders": "Order history",
+      "no_orders": "You haven't placed any orders yet.",
+      "start_shopping": "Start shopping",
+      "log_out": "Log out"
+    },
+    "log_in": {
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "sign_in": "Sign in",
+      "forgot_password": "Forgot your password?",
+      "create_account": "Create account",
+      "guest_continue": "Continue as guest"
+    },
+    "register": {
+      "title": "Create account",
+      "first_name": "First name",
+      "last_name": "Last name",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Create"
+    },
+    "recover_password": {
+      "title": "Reset your password",
+      "subtext": "We will send you an email to reset your password.",
+      "email": "Email",
+      "submit": "Submit",
+      "success": "We've sent you an email with a link to update your password."
+    },
+    "reset_password": {
+      "title": "Reset account password",
+      "password": "Password",
+      "password_confirm": "Confirm password",
+      "submit": "Reset password"
+    },
+    "order": {
+      "title": "Order {{ name }}",
+      "date_html": "Placed on {{ date }}",
+      "cancelled_html": "Order cancelled on {{ date }}",
+      "cancelled_reason": "Reason: {{ reason }}",
+      "billing_address": "Billing address",
+      "shipping_address": "Shipping address",
+      "fulfillment_status": "Fulfillment status",
+      "payment_status": "Payment status",
+      "track_shipment": "Track shipment",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "tax": "Tax",
+      "total": "Total"
+    },
+    "addresses": {
+      "title": "Addresses",
+      "default": "Default address",
+      "add_new": "Add a new address",
+      "edit": "Edit",
+      "delete": "Delete",
+      "delete_confirm": "Are you sure you wish to delete this address?"
+    },
+    "orders": {
+      "title": "Order history",
+      "order_number": "Order",
+      "date": "Date",
+      "payment_status": "Payment status",
+      "fulfillment_status": "Fulfillment status",
+      "total": "Total"
+    }
+  },
+  "sections": {
+    "announcement_bar": {
+      "default_message": "Free Australia-wide shipping on orders over $100"
+    },
+    "hero": {
+      "default_heading": "Six heights. Three angles. Zero setup.",
+      "default_subheading": "The adjustable folding table built for wherever life happens — the sofa, the bed, the desk, the deck.",
+      "default_cta": "Shop Table Buddy"
+    }
+  },
+  "quiz": {
+    "title": "Find your Table Buddy",
+    "subtitle": "Answer four quick questions and we'll match you to the right model.",
+    "start": "Start the quiz",
+    "next": "Next",
+    "back": "Back",
+    "see_results": "See my match",
+    "retake": "Retake quiz",
+    "your_match": "Your match"
+  }
+}

@@ -1,0 +1,86 @@
+{%- liquid
+  assign threshold = settings.free_shipping_threshold | plus: 0
+  assign threshold_cents = threshold | times: 100
+  assign shipping_pct = 0
+  assign shipping_remaining = 0
+  if threshold_cents > 0
+    assign shipping_pct = cart.total_price | times: 100.0 | divided_by: threshold_cents | at_most: 100
+    assign shipping_remaining = threshold_cents | minus: cart.total_price
+  endif
+-%}
+<div class="drawer" id="cart-drawer" aria-hidden="true" aria-label="{{ 'general.cart.title' | t }}" data-free-shipping-threshold="{{ threshold }}">
+  <div class="drawer__header">
+    <span class="h4" style="margin:0;">{{ 'general.cart.title' | t }} <span data-cart-count>{{ cart.item_count }}</span></span>
+    <button type="button" class="icon-btn" data-close-drawer aria-label="{{ 'general.cart.close' | t }}">
+      {%- render 'icon', name: 'close' -%}
+    </button>
+  </div>
+
+  {%- if threshold > 0 -%}
+    <div class="page-width" style="padding-block:1rem 0;max-width:none;">
+      <div class="progress-bar"><div class="progress-bar__fill" data-shipping-progress-fill style="width:{{ shipping_pct }}%;"></div></div>
+      <p class="text-muted" style="font-size:0.85rem;margin-top:0.5rem;"
+         data-shipping-progress-label
+         data-progress-text="{{ 'general.cart.free_shipping_progress_html' | t: amount: '{{ amount }}' | strip_html }}"
+         data-reached-text="{{ 'general.cart.free_shipping_reached' | t }}">
+        {%- if shipping_remaining <= 0 -%}
+          {{ 'general.cart.free_shipping_reached' | t }}
+        {%- else -%}
+          {{ 'general.cart.free_shipping_progress_html' | t: amount: shipping_remaining | money | strip_html }}
+        {%- endif -%}
+      </p>
+    </div>
+  {%- endif -%}
+
+  <div class="drawer__body">
+    <p data-cart-empty {% if cart.item_count > 0 %}hidden{% endif %}>
+      {{ 'general.cart.empty' | t }}<br>
+      <button type="button" class="link" data-close-drawer style="margin-top:0.5rem;">{{ 'general.cart.empty_link' | t }}</button>
+    </p>
+    <ul data-cart-items style="list-style:none;padding:0;margin:0;">
+      {%- for item in cart.items -%}
+        <li class="cart-line" data-cart-line="{{ item.key }}">
+          <div class="cart-line__media">
+            {%- if item.image -%}
+              <img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.image.alt | escape }}" width="80" height="80" loading="lazy">
+            {%- endif -%}
+          </div>
+          <div class="cart-line__body">
+            <p class="cart-line__title">{{ item.product.title }}</p>
+            {%- unless item.variant.title == 'Default Title' -%}
+              <p class="cart-line__variant text-muted">{{ item.variant.title }}</p>
+            {%- endunless -%}
+            <div class="cart-line__row">
+              <div class="quantity-selector" data-line-key="{{ item.key }}">
+                <button type="button" data-cart-qty="decrease" aria-label="Decrease quantity">&minus;</button>
+                <input type="number" min="0" value="{{ item.quantity }}" aria-label="{{ 'general.cart.quantity' | t }}" data-cart-qty-input>
+                <button type="button" data-cart-qty="increase" aria-label="Increase quantity">+</button>
+              </div>
+              <p class="cart-line__price">{{ item.final_line_price | money }}</p>
+            </div>
+          </div>
+          <button type="button" class="icon-btn cart-line__remove" data-cart-remove="{{ item.key }}" aria-label="{{ 'general.cart.remove' | t }} {{ item.product.title }}">
+            {%- render 'icon', name: 'close', size: 18 -%}
+          </button>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+
+  <div class="drawer__footer" data-cart-footer {% if cart.item_count == 0 %}hidden{% endif %}>
+    {%- if settings.cart_show_notes -%}
+      <form data-cart-note-form style="margin-bottom:1rem;">
+        <div class="field">
+          <label for="cart-note">{{ 'general.cart.order_note' | t }}</label>
+          <textarea id="cart-note" name="note" class="input" rows="2" placeholder="{{ 'general.cart.note_placeholder' | t }}">{{ cart.note }}</textarea>
+        </div>
+      </form>
+    {%- endif -%}
+    <div class="flex" style="justify-content:space-between;align-items:center;margin-bottom:1rem;">
+      <span style="font-weight:700;">{{ 'general.cart.subtotal' | t }}</span>
+      <span style="font-weight:800;font-size:1.15rem;" data-cart-subtotal>{{ cart.total_price | money }}</span>
+    </div>
+    <a href="{{ routes.cart_url }}" class="btn btn--secondary btn--block" style="margin-bottom:0.6rem;">{{ 'general.cart.view_cart' | t }}</a>
+    <a href="{{ routes.cart_url }}/checkout" class="btn btn--primary btn--block">{{ 'general.cart.checkout' | t }}</a>
+  </div>
+</div>
