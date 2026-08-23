@@ -1,0 +1,51 @@
+{
+  "sections": {
+    "steps": {
+      "type": "steps",
+      "settings": {
+        "color_scheme": "scheme-paper",
+        "eyebrow": "How to use",
+        "heading": "Set up in under a minute",
+        "text": "No manual, no tools — just unfold, adjust and go."
+      },
+      "blocks": {
+        "s1": { "type": "step", "settings": { "title": "Unfold the legs", "text": "Release the folded legs and stand the frame upright." } },
+        "s2": { "type": "step", "settings": { "title": "Pick your height", "text": "Slide to one of six height positions and lock it in." } },
+        "s3": { "type": "step", "settings": { "title": "Set your angle", "text": "Choose flat, reading or hobby angle for the tabletop." } },
+        "s4": { "type": "step", "settings": { "title": "Position it", "text": "Slide it over the sofa, bed or chair — no assembly required." } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4"]
+    },
+    "uses": {
+      "type": "benefit-split",
+      "settings": {
+        "color_scheme": "scheme-navy",
+        "eyebrow": "Made for every moment",
+        "heading": "One table, every use",
+        "button_label": "Explore by use",
+        "button_link": "/pages/shop-by-use"
+      },
+      "blocks": {
+        "b1": { "type": "benefit", "settings": { "icon": "height", "title": "Working & studying", "text": "Standing or seated desk height, angled for comfortable typing." } },
+        "b2": { "type": "benefit", "settings": { "icon": "cupholder", "title": "Meals & snacking", "text": "Flat and stable, with a cup holder on Smart and Executive." } },
+        "b3": { "type": "benefit", "settings": { "icon": "angle", "title": "Reading & hobbies", "text": "Tilt the tabletop for books, drawing or craft projects." } }
+      },
+      "block_order": ["b1", "b2", "b3"]
+    },
+    "faq": {
+      "type": "faq-accordion",
+      "settings": {
+        "color_scheme": "scheme-paper",
+        "eyebrow": "Setup questions",
+        "heading": "Common questions"
+      },
+      "blocks": {
+        "f1": { "type": "faq", "settings": { "question": "Do I need any tools?", "answer": "<p>No tools required — everything clicks into place by hand.</p>" } },
+        "f2": { "type": "faq", "settings": { "question": "How do I change the height?", "answer": "<p>Squeeze the adjustment clip on each leg and slide to your chosen position — six positions are available.</p>" } },
+        "f3": { "type": "faq", "settings": { "question": "How do I change the angle?", "answer": "<p>Tilt the tabletop and lock it into one of three angled positions using the hinge at the back edge.</p>" } }
+      },
+      "block_order": ["f1", "f2", "f3"]
+    }
+  },
+  "order": ["steps", "uses", "faq"]
+}

@@ -1,0 +1,35 @@
+{%- comment -%} Accepts: product {%- endcomment -%}
+<tb-product-gallery class="product-gallery">
+  <div class="product-gallery__main carousel__track" data-gallery-main style="display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:var(--radius-card);background:#EEF4FB;">
+    {%- for media in product.media -%}
+      <div data-media-id="{{ media.id }}" style="min-width:100%;aspect-ratio:1/1;scroll-snap-align:start;">
+        {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
+          <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">{{ media | media_tag: controls: true }}</div>
+        {%- else -%}
+          <img
+            src="{{ media | image_url: width: 1000 }}"
+            srcset="{{ media | image_url: width: 500 }} 500w, {{ media | image_url: width: 800 }} 800w, {{ media | image_url: width: 1000 }} 1000w, {{ media | image_url: width: 1400 }} 1400w"
+            sizes="(min-width: 750px) 50vw, 100vw"
+            alt="{{ media.alt | escape }}"
+            width="{{ media.width }}" height="{{ media.height }}"
+            style="width:100%;height:100%;object-fit:contain;padding:2rem;"
+            loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+            {% if forloop.first %}fetchpriority="high"{% endif %}>
+        {%- endif -%}
+      </div>
+    {%- else -%}
+      <div style="min-width:100%;aspect-ratio:1/1;"></div>
+    {%- endfor -%}
+  </div>
+  {%- if product.media.size > 1 -%}
+    <div class="product-gallery__thumbs" style="display:flex;gap:0.6rem;margin-top:0.75rem;overflow-x:auto;">
+      {%- for media in product.media -%}
+        <button type="button" data-gallery-thumb data-media-id="{{ media.id }}" class="{% if forloop.first %}is-active{% endif %}"
+          style="width:64px;height:64px;flex-shrink:0;border-radius:10px;overflow:hidden;border:2px solid {% if forloop.first %}rgb(var(--color-brand-cobalt)){% else %}var(--cs-border,#D7E3F0){% endif %};background:#EEF4FB;padding:0;"
+          aria-label="Show image {{ forloop.index }}">
+          <img src="{{ media.preview_image | image_url: width: 120 }}" alt="" width="64" height="64" style="width:100%;height:100%;object-fit:contain;" loading="lazy">
+        </button>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</tb-product-gallery>

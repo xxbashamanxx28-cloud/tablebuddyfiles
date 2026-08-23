@@ -1,0 +1,98 @@
+<div class="color-{{ section.settings.color_scheme }}">
+  <div class="page-width section section--tight">
+    <div class="section-header section-header--center">
+      <h1 class="h1">{{ collection.title }}</h1>
+      {%- if collection.description != blank -%}
+        <div class="prose text-balance" style="max-width:60ch;margin-inline:auto;margin-top:0.75rem;">{{ collection.description }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="page-width section section--tight" style="padding-top:0;">
+    {%- paginate collection.products by 24 -%}
+      <form id="facets-form" method="get">
+        <div class="flex" style="justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem;">
+          <div class="flex gap-sm" style="align-items:center;">
+            <button type="button" class="btn btn--secondary btn--sm" data-open-drawer="filters-drawer">
+              {%- render 'icon', name: 'filter', size: 16 -%} {{ 'products.facets.filters' | t }}
+              {%- if collection.filters.size > 0 -%}
+                {%- assign active_count = 0 -%}
+                {%- for filter in collection.filters -%}{%- assign active_count = active_count | plus: filter.active_values.size -%}{%- endfor -%}
+                {%- if active_count > 0 -%}<span class="badge">{{ active_count }}</span>{%- endif -%}
+              {%- endif -%}
+            </button>
+            <span class="text-muted" style="font-size:0.9rem;">
+              {%- if collection.products_count == 1 -%}{{ 'products.facets.results_count.one' | t: count: collection.products_count }}
+              {%- else -%}{{ 'products.facets.results_count.other' | t: count: collection.products_count }}{%- endif -%}
+            </span>
+          </div>
+          <div class="select-wrapper">
+            <label class="visually-hidden" for="sort-by">{{ 'products.facets.sort_by' | t }}</label>
+            <select id="sort-by" name="sort_by" class="select" onchange="this.form.submit()">
+              {%- for option in collection.sort_options -%}
+                <option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected{% endif %}>{{ option.name }}</option>
+              {%- endfor -%}
+            </select>
+          </div>
+        </div>
+
+        {%- if collection.products.size == 0 -%}
+          <p class="text-muted" style="padding:3rem 0;text-align:center;">No products found.</p>
+        {%- else -%}
+          <div class="grid grid--4">
+            {%- for product in collection.products -%}
+              {%- render 'product-card', product: product -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- if paginate.pages > 1 -%}
+          <nav class="flex-center gap-sm" style="margin-top:3rem;" aria-label="{{ 'general.pagination.label' | t }}">
+            {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}" class="btn btn--secondary btn--sm">{{ 'general.pagination.previous' | t }}</a>{%- endif -%}
+            {%- for part in paginate.parts -%}
+              {%- if part.is_link -%}<a href="{{ part.url }}" class="icon-btn">{{ part.title }}</a>
+              {%- else -%}<span class="icon-btn" aria-current="page" style="font-weight:800;">{{ part.title }}</span>{%- endif -%}
+            {%- endfor -%}
+            {%- if paginate.next -%}<a href="{{ paginate.next.url }}" class="btn btn--secondary btn--sm">{{ 'general.pagination.next' | t }}</a>{%- endif -%}
+          </nav>
+        {%- endif -%}
+      </form>
+    {%- endpaginate -%}
+  </div>
+</div>
+
+<div class="drawer" data-side="left" id="filters-drawer" aria-hidden="true" aria-label="{{ 'products.facets.filters' | t }}">
+  <div class="drawer__header">
+    <span class="h4" style="margin:0;">{{ 'products.facets.filter_and_sort' | t }}</span>
+    <button type="button" class="icon-btn" data-close-drawer aria-label="Close">{%- render 'icon', name: 'close' -%}</button>
+  </div>
+  <div class="drawer__body">
+    {%- for filter in collection.filters -%}
+      <div style="margin-bottom:1.75rem;">
+        <p style="font-weight:700;margin-bottom:0.75rem;">{{ filter.label }}</p>
+        <div class="flex" style="flex-direction:column;gap:0.6rem;">
+          {%- for value in filter.values -%}
+            <label class="flex gap-sm" style="align-items:center;">
+              <input type="checkbox" form="facets-form" name="{{ value.param_name }}" value="{{ value.value }}" {% if value.active %}checked{% endif %} {% if value.count == 0 and value.active == false %}disabled{% endif %}>
+              <span>{{ value.label }} ({{ value.count }})</span>
+            </label>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+  <div class="drawer__footer flex gap-sm">
+    <a href="{{ collection.url }}" class="btn btn--secondary btn--block">{{ 'products.facets.clear_all' | t }}</a>
+    <button type="submit" form="facets-form" class="btn btn--primary btn--block">{{ 'products.facets.apply' | t }}</button>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection",
+  "tag": "section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-paper" }
+  ]
+}
+{% endschema %}

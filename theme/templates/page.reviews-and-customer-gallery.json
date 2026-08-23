@@ -1,0 +1,46 @@
+{
+  "sections": {
+    "reviews": {
+      "type": "reviews-carousel",
+      "settings": {
+        "color_scheme": "scheme-paper",
+        "eyebrow": "Customer love",
+        "heading": "Reviews & customer gallery",
+        "show_summary": true,
+        "average_rating": 4.8,
+        "review_count": 214
+      },
+      "blocks": {
+        "r1": { "type": "review", "settings": { "rating": 5, "quote": "I work from the couch three days a week now. Six height settings means it's perfect for my laptop and my lunch plate. Took two minutes to set up, no tools.", "author": "Sarah T.", "location": "Brisbane, QLD" } },
+        "r2": { "type": "review", "settings": { "rating": 5, "quote": "Bought the Executive for my dad after his knee surgery — the footrest is genuinely brilliant and the cup holder means his tea doesn't end up on the carpet anymore.", "author": "Michael R.", "location": "Geelong, VIC" } },
+        "r3": { "type": "review", "settings": { "rating": 4, "quote": "Great for gaming nights — angled setting is perfect for the controller and the tray doesn't wobble even with a monitor on it.", "author": "Priya K.", "location": "Parramatta, NSW" } },
+        "r4": { "type": "review", "settings": { "rating": 5, "quote": "Folds completely flat and slides behind the couch. My apartment is tiny so this mattered more than anything else — genuinely space-saving.", "author": "Josh L.", "location": "Fremantle, WA" } },
+        "r5": { "type": "review", "settings": { "rating": 5, "quote": "Ordered the Smart in sky blue for my daughter's room — she does her homework on it every afternoon now instead of lying on the bed.", "author": "Amanda F.", "location": "Adelaide, SA" } },
+        "r6": { "type": "review", "settings": { "rating": 5, "quote": "Best purchase for our small apartment. Folds up in seconds and fits behind the door.", "author": "Chen W.", "location": "Sydney, NSW" } }
+      },
+      "block_order": ["r1", "r2", "r3", "r4", "r5", "r6"]
+    },
+    "gallery": {
+      "type": "social-gallery",
+      "settings": { "color_scheme": "scheme-sky", "eyebrow": "Customer gallery", "heading": "Real setups from real customers", "handle": "@tablebuddy" },
+      "blocks": {
+        "s1": { "type": "image", "settings": {} },
+        "s2": { "type": "image", "settings": {} },
+        "s3": { "type": "image", "settings": {} },
+        "s4": { "type": "image", "settings": {} },
+        "s5": { "type": "image", "settings": {} }
+      },
+      "block_order": ["s1", "s2", "s3", "s4", "s5"]
+    },
+    "note": {
+      "type": "rich-text",
+      "settings": {
+        "color_scheme": "scheme-paper",
+        "narrow": true,
+        "center": true,
+        "text": "<p class=\"text-muted\">[ Reviews above are illustrative placeholders written for design purposes. Replace with genuine customer reviews — connect a reviews app (e.g. Judge.me, Loox, Shopify Product Reviews) once live orders come in, or add real testimonials manually via the theme editor. Customer gallery images are configurable placeholders — upload real customer/UGC photos in the theme editor. ]</p>"
+      }
+    }
+  },
+  "order": ["reviews", "gallery", "note"]
+}

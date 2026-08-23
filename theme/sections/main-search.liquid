@@ -1,0 +1,48 @@
+<div class="color-{{ section.settings.color_scheme }}">
+  <div class="page-width section section--tight">
+    <form action="{{ routes.search_url }}" method="get" role="search" class="predictive-search__form" style="max-width:520px;margin-bottom:2rem;">
+      {%- render 'icon', name: 'search', size: 20 -%}
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" style="flex:1;border:0;background:transparent;padding:0.5rem 0;">
+      <input type="hidden" name="type" value="product,page,article">
+      <button type="submit" class="btn btn--primary btn--sm">{{ 'general.search.submit' | t }}</button>
+    </form>
+
+    {%- if search.performed -%}
+      <h1 class="h2" style="margin-bottom:1.5rem;">
+        {%- if search.results_count > 0 -%}
+          {{ 'general.search.results_for_html' | t: count: search.results_count, terms: search.terms }}
+        {%- else -%}
+          {{ 'general.search.no_results_html' | t: terms: search.terms }}
+        {%- endif -%}
+      </h1>
+
+      {%- if search.results_count > 0 -%}
+        <div class="grid grid--4">
+          {%- for item in search.results -%}
+            {%- if item.object_type == 'product' -%}
+              {%- render 'product-card', product: item -%}
+            {%- else -%}
+              <a href="{{ item.url }}" class="card card--pad">
+                <p class="eyebrow">{{ item.object_type | capitalize }}</p>
+                <p style="font-weight:700;margin-top:0.4rem;">{{ item.title }}</p>
+                {%- if item.content -%}<p class="text-muted" style="margin-top:0.4rem;font-size:0.9rem;">{{ item.content | strip_html | truncate: 100 }}</p>{%- endif -%}
+              </a>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    {%- else -%}
+      <p class="text-muted">{{ 'general.search.search' | t }} Table Buddy for products, pages and guides.</p>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Search",
+  "tag": "section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-paper" }
+  ]
+}
+{% endschema %}

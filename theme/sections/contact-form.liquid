@@ -1,0 +1,71 @@
+<div class="color-{{ section.settings.color_scheme }}">
+  <div class="page-width section section--tight">
+    <div class="grid grid--2" style="gap:3rem;align-items:flex-start;">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+        <h1 class="h1">{{ section.settings.heading }}</h1>
+        {%- if section.settings.text != blank -%}<div class="prose" style="margin-top:1rem;max-width:48ch;">{{ section.settings.text }}</div>{%- endif -%}
+        <div style="margin-top:2rem;display:flex;flex-direction:column;gap:1rem;">
+          {%- if section.settings.email != blank -%}
+            <a href="mailto:{{ section.settings.email }}" class="flex gap-sm" style="align-items:center;font-weight:600;">{%- render 'icon', name: 'mail', size: 20 -%} {{ section.settings.email }}</a>
+          {%- endif -%}
+          {%- if section.settings.phone != blank -%}
+            <a href="tel:{{ section.settings.phone }}" class="flex gap-sm" style="align-items:center;font-weight:600;">{%- render 'icon', name: 'phone', size: 20 -%} {{ section.settings.phone }}</a>
+          {%- endif -%}
+          {%- if section.settings.hours != blank -%}
+            <p class="text-muted">{{ section.settings.hours }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="card card--pad">
+        {%- form 'contact', class: 'contact-form' -%}
+          {%- if form.posted_successfully? -%}
+            <p style="font-weight:700;margin-bottom:1rem;">Thanks — we'll be in touch shortly.</p>
+          {%- endif -%}
+          {%- if form.errors -%}
+            <p role="alert" style="color:#C0362C;margin-bottom:1rem;">{{ form.errors | default_errors }}</p>
+          {%- endif -%}
+          <div class="grid grid--2" style="gap:1rem;">
+            <div class="field">
+              <label for="contact-name">Name</label>
+              <input type="text" id="contact-name" class="input" name="contact[name]" required value="{{ form.name }}">
+            </div>
+            <div class="field">
+              <label for="contact-email">Email</label>
+              <input type="email" id="contact-email" class="input" name="contact[email]" required value="{{ form.email }}">
+            </div>
+          </div>
+          <div class="field" style="margin-top:1rem;">
+            <label for="contact-order">Order number (optional)</label>
+            <input type="text" id="contact-order" class="input" name="contact[order_number]" value="{{ form.order_number }}">
+          </div>
+          <div class="field" style="margin-top:1rem;">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" class="input" name="contact[body]" rows="5" required>{{ form.body }}</textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--block" style="margin-top:1.5rem;">Send message</button>
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact form",
+  "tag": "section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-paper" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Get in touch" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "We're here to help" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Questions about sizing, an order, or a warranty claim? Send us a message and our team will get back to you within one business day.</p>" },
+    { "type": "text", "id": "email", "label": "Support email", "info": "Add your real support email — required info.", "default": "hello@tablebuddy.com.au" },
+    { "type": "text", "id": "phone", "label": "Support phone (optional)" },
+    { "type": "text", "id": "hours", "label": "Hours", "default": "Mon–Fri, 9am–5pm AEST" }
+  ],
+  "presets": [
+    { "name": "Contact form" }
+  ]
+}
+{% endschema %}

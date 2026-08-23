@@ -1,0 +1,25 @@
+{%- comment -%} Accepts: form, address (optional) {%- endcomment -%}
+<div class="grid grid--2" style="gap:0.85rem;">
+  <div class="field"><label for="AddressFirstName{{ form.id }}">First name</label><input type="text" id="AddressFirstName{{ form.id }}" class="input" name="address[first_name]" value="{{ form.first_name | default: address.first_name }}"></div>
+  <div class="field"><label for="AddressLastName{{ form.id }}">Last name</label><input type="text" id="AddressLastName{{ form.id }}" class="input" name="address[last_name]" value="{{ form.last_name | default: address.last_name }}"></div>
+</div>
+<div class="field" style="margin-top:0.85rem;"><label for="AddressCompany{{ form.id }}">Company (optional)</label><input type="text" id="AddressCompany{{ form.id }}" class="input" name="address[company]" value="{{ form.company | default: address.company }}"></div>
+<div class="field" style="margin-top:0.85rem;"><label for="AddressAddress1{{ form.id }}">Address</label><input type="text" id="AddressAddress1{{ form.id }}" class="input" name="address[address1]" value="{{ form.address1 | default: address.address1 }}"></div>
+<div class="field" style="margin-top:0.85rem;"><label for="AddressAddress2{{ form.id }}">Apartment, suite, etc. (optional)</label><input type="text" id="AddressAddress2{{ form.id }}" class="input" name="address[address2]" value="{{ form.address2 | default: address.address2 }}"></div>
+<div class="grid grid--2" style="gap:0.85rem;margin-top:0.85rem;">
+  <div class="field"><label for="AddressCity{{ form.id }}">City</label><input type="text" id="AddressCity{{ form.id }}" class="input" name="address[city]" value="{{ form.city | default: address.city }}"></div>
+  <div class="field"><label for="AddressZip{{ form.id }}">Postcode</label><input type="text" id="AddressZip{{ form.id }}" class="input" name="address[zip]" value="{{ form.zip | default: address.zip }}"></div>
+</div>
+<div class="field" style="margin-top:0.85rem;">
+  <label for="AddressCountry{{ form.id }}">Country/region</label>
+  <div class="select-wrapper">
+    <select id="AddressCountry{{ form.id }}" class="select" name="address[country]" data-address-country-select data-default="{{ form.country | default: address.country }}">
+      {{ country_option_tags }}
+    </select>
+  </div>
+</div>
+<div class="field" style="margin-top:0.85rem;" data-address-province-container hidden>
+  <label for="AddressProvince{{ form.id }}">State/province</label>
+  <div class="select-wrapper"><select id="AddressProvince{{ form.id }}" class="select" name="address[province]" data-address-province-select data-default="{{ form.province | default: address.province }}"></select></div>
+</div>
+<div class="field" style="margin-top:0.85rem;"><label for="AddressPhone{{ form.id }}">Phone</label><input type="tel" id="AddressPhone{{ form.id }}" class="input" name="address[phone]" value="{{ form.phone | default: address.phone }}"></div>

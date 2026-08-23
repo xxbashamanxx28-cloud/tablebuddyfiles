@@ -1,0 +1,45 @@
+<div class="color-scheme-paper">
+  <div class="page-width section section--tight">
+    <a href="{{ routes.account_url }}" class="link-arrow" style="margin-bottom:1.5rem;">{%- render 'icon', name: 'chevron-left', size: 16 -%} {{ 'customer.account.title' | t }}</a>
+
+    <h1 class="h1" style="margin:1rem 0 0.5rem;">{{ 'customer.order.title' | t: name: order.name }}</h1>
+    <p class="text-muted">{{ 'customer.order.date_html' | t: date: order.created_at | date: '%d %B %Y' }}</p>
+    {%- if order.cancelled -%}
+      <p style="color:#C0362C;margin-top:0.5rem;">{{ 'customer.order.cancelled_html' | t: date: order.cancelled_at | date: '%d %B %Y' }}</p>
+    {%- endif -%}
+
+    <div class="tb-table-wrap" style="margin-top:2rem;">
+      <table class="tb-table">
+        <thead><tr><th scope="col">Product</th><th scope="col">Price</th><th scope="col">Qty</th><th scope="col">Total</th></tr></thead>
+        <tbody>
+          {%- for line_item in order.line_items -%}
+            <tr>
+              <td>{{ line_item.title }}</td>
+              <td>{{ line_item.price | money }}</td>
+              <td>{{ line_item.quantity }}</td>
+              <td>{{ line_item.final_line_price | money }}</td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+    </div>
+
+    <div style="max-width:320px;margin-left:auto;margin-top:1.5rem;">
+      <div class="flex" style="justify-content:space-between;"><span>{{ 'customer.order.subtotal' | t }}</span><span>{{ order.line_items_subtotal_price | money }}</span></div>
+      <div class="flex" style="justify-content:space-between;margin-top:0.4rem;"><span>{{ 'customer.order.shipping' | t }}</span><span>{{ order.shipping_price | money }}</span></div>
+      <div class="flex" style="justify-content:space-between;margin-top:0.4rem;"><span>{{ 'customer.order.tax' | t }}</span><span>{{ order.tax_price | money }}</span></div>
+      <div class="flex" style="justify-content:space-between;margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid var(--cs-border,#E4ECF5);font-weight:800;"><span>{{ 'customer.order.total' | t }}</span><span>{{ order.total_price | money }}</span></div>
+    </div>
+
+    <div class="grid grid--2" style="gap:2rem;margin-top:2.5rem;">
+      <div>
+        <h2 class="h4">{{ 'customer.order.shipping_address' | t }}</h2>
+        <p class="text-muted" style="margin-top:0.5rem;">{{ order.shipping_address | format_address }}</p>
+      </div>
+      <div>
+        <h2 class="h4">{{ 'customer.order.billing_address' | t }}</h2>
+        <p class="text-muted" style="margin-top:0.5rem;">{{ order.billing_address | format_address }}</p>
+      </div>
+    </div>
+  </div>
+</div>

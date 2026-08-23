@@ -1,0 +1,44 @@
+<div class="color-scheme-paper">
+  <div class="page-width section section--tight">
+    <div class="flex" style="justify-content:space-between;align-items:center;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;">
+      <h1 class="h1">{{ 'customer.account.title' | t }}</h1>
+      <div class="flex gap-sm">
+        <a href="{{ routes.account_addresses_url }}" class="btn btn--secondary btn--sm">{{ 'customer.account.view_addresses' | t }}</a>
+        {%- form 'customer_logout' -%}
+          <button type="submit" class="btn btn--secondary btn--sm">{{ 'customer.account.log_out' | t }}</button>
+        {%- endform -%}
+      </div>
+    </div>
+
+    <h2 class="h4" style="margin-bottom:1rem;">{{ 'customer.account.orders' | t }}</h2>
+    {%- if customer.orders.size == 0 -%}
+      <p class="text-muted">{{ 'customer.account.no_orders' | t }}</p>
+      <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary" style="margin-top:1rem;">{{ 'customer.account.start_shopping' | t }}</a>
+    {%- else -%}
+      <div class="tb-table-wrap">
+        <table class="tb-table">
+          <thead>
+            <tr>
+              <th scope="col">{{ 'customer.orders.order_number' | t }}</th>
+              <th scope="col">{{ 'customer.orders.date' | t }}</th>
+              <th scope="col">{{ 'customer.orders.payment_status' | t }}</th>
+              <th scope="col">{{ 'customer.orders.fulfillment_status' | t }}</th>
+              <th scope="col">{{ 'customer.orders.total' | t }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%- for order in customer.orders -%}
+              <tr>
+                <td><a href="{{ order.customer_url }}" class="link">{{ order.name }}</a></td>
+                <td>{{ order.created_at | date: '%d %b %Y' }}</td>
+                <td>{{ order.financial_status_label }}</td>
+                <td>{{ order.fulfillment_status_label }}</td>
+                <td>{{ order.total_price | money }}</td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+      </div>
+    {%- endif -%}
+  </div>
+</div>

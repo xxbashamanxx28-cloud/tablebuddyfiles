@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "tracking": {
+      "type": "order-tracking",
+      "settings": { "color_scheme": "scheme-paper" }
+    }
+  },
+  "order": ["tracking"]
+}

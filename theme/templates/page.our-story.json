@@ -1,0 +1,50 @@
+{
+  "sections": {
+    "intro": {
+      "type": "main-page",
+      "settings": { "color_scheme": "scheme-paper", "center": true }
+    },
+    "mission": {
+      "type": "promo-split",
+      "settings": {
+        "color_scheme": "scheme-sky",
+        "media_side": "left",
+        "eyebrow": "Our mission",
+        "heading": "Designed around real rooms, not showrooms",
+        "text": "<p>Table Buddy started with a simple frustration: most surfaces in a home are fixed in place, but life isn't. We build one adjustable table that moves between the sofa, the bed, the desk and the deck — so you don't need four different pieces of furniture for four different moments.</p>"
+      }
+    },
+    "values": {
+      "type": "benefit-split",
+      "settings": {
+        "color_scheme": "scheme-navy",
+        "eyebrow": "What we stand for",
+        "heading": "Every Table Buddy is built to the same standard",
+        "guarantee_text": "30-day money-back guarantee on every order"
+      },
+      "blocks": {
+        "b1": { "type": "benefit", "settings": { "icon": "no-tools", "title": "Genuinely no-tool setup", "text": "If it needs a manual, we haven't finished the job." } },
+        "b2": { "type": "benefit", "settings": { "icon": "portable", "title": "Built for Australian homes", "text": "Compact, lightweight and sized for apartments as much as houses." } },
+        "b3": { "type": "benefit", "settings": { "icon": "height", "title": "Adjustable, always", "text": "Six heights and three angles on every model — no exceptions." } }
+      },
+      "block_order": ["b1", "b2", "b3"]
+    },
+    "reviews": {
+      "type": "reviews-carousel",
+      "settings": {
+        "color_scheme": "scheme-paper",
+        "eyebrow": "From our customers",
+        "heading": "Why people keep coming back",
+        "show_summary": true,
+        "average_rating": 4.8,
+        "review_count": 214
+      },
+      "blocks": {
+        "r1": { "type": "review", "settings": { "rating": 5, "quote": "I work from the couch three days a week now. Six height settings means it's perfect for my laptop and my lunch plate.", "author": "Sarah T.", "location": "Brisbane, QLD" } },
+        "r2": { "type": "review", "settings": { "rating": 5, "quote": "Folds completely flat and slides behind the couch. Genuinely space-saving for my tiny apartment.", "author": "Josh L.", "location": "Fremantle, WA" } }
+      },
+      "block_order": ["r1", "r2"]
+    }
+  },
+  "order": ["intro", "mission", "values", "reviews"]
+}

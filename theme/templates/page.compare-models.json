@@ -1,0 +1,35 @@
+{
+  "sections": {
+    "compare": {
+      "type": "compare-table",
+      "settings": {
+        "color_scheme": "scheme-paper",
+        "eyebrow": "Compare models",
+        "heading": "Find the right Table Buddy for you",
+        "text": "Compare features and pricing to choose the model that's right for your routine.",
+        "show_trust_row": true,
+        "button_label": "Shop all Table Buddy",
+        "button_link": "/collections/all"
+      },
+      "blocks": {
+        "m1": { "type": "model", "settings": { "name": "Table Buddy Regular", "price_text": "$—", "height_positions": "6", "angles": "3", "cup_holder": false, "footrest": false, "colours": "9" } },
+        "m2": { "type": "model", "settings": { "name": "Table Buddy Smart", "price_text": "$—", "height_positions": "6", "angles": "3", "cup_holder": true, "footrest": false, "colours": "3" } },
+        "m3": { "type": "model", "settings": { "name": "Table Buddy Executive", "price_text": "$—", "height_positions": "6", "angles": "3", "cup_holder": true, "footrest": true, "colours": "2" } }
+      },
+      "block_order": ["m1", "m2", "m3"]
+    },
+    "faq": {
+      "type": "faq-accordion",
+      "settings": {
+        "color_scheme": "scheme-sky",
+        "eyebrow": "Still deciding?",
+        "heading": "Common questions"
+      },
+      "blocks": {
+        "f1": { "type": "faq", "settings": { "question": "Not sure which one to pick?", "answer": "<p>Try our <a href=\"/pages/product-finder-quiz\">Product Finder Quiz</a> — answer three quick questions and we'll match you to the right model.</p>" } }
+      },
+      "block_order": ["f1"]
+    }
+  },
+  "order": ["compare", "faq"]
+}

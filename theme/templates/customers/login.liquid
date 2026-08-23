@@ -1,0 +1,60 @@
+<div class="color-scheme-paper">
+  <div class="page-width section section--tight" style="max-width:480px;">
+    <h1 class="h1" style="margin-bottom:2rem;text-align:center;">{{ 'customer.log_in.title' | t }}</h1>
+
+    {%- form 'customer_login' -%}
+      {%- if form.errors -%}
+        <p role="alert" style="color:#C0362C;margin-bottom:1rem;">{{ form.errors | default_errors }}</p>
+      {%- endif -%}
+      <div class="field" style="margin-bottom:1rem;">
+        <label for="customer-email">{{ 'customer.log_in.email' | t }}</label>
+        <input type="email" id="customer-email" class="input" name="customer[email]" autocomplete="email" required>
+      </div>
+      <div class="field">
+        <label for="customer-password">{{ 'customer.log_in.password' | t }}</label>
+        <input type="password" id="customer-password" class="input" name="customer[password]" autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn btn--primary btn--block" style="margin-top:1.5rem;">{{ 'customer.log_in.sign_in' | t }}</button>
+      <div class="flex" style="justify-content:space-between;margin-top:1rem;font-size:0.9rem;">
+        <a href="#" data-show-recover class="link">{{ 'customer.log_in.forgot_password' | t }}</a>
+        <a href="{{ routes.account_register_url }}" class="link">{{ 'customer.log_in.create_account' | t }}</a>
+      </div>
+    {%- endform -%}
+
+    <div id="recover-password" hidden style="margin-top:2rem;padding-top:2rem;border-top:1px solid var(--cs-border,#E4ECF5);">
+      <h2 class="h4">{{ 'customer.recover_password.title' | t }}</h2>
+      <p class="text-muted" style="margin:0.5rem 0 1rem;">{{ 'customer.recover_password.subtext' | t }}</p>
+      {%- form 'recover_customer_password' -%}
+        {%- if form.posted_successfully? -%}
+          <p style="font-weight:700;">{{ 'customer.recover_password.success' | t }}</p>
+        {%- else -%}
+          <div class="field">
+            <label for="recover-email">{{ 'customer.recover_password.email' | t }}</label>
+            <input type="email" id="recover-email" class="input" name="email" required>
+          </div>
+          <button type="submit" class="btn btn--secondary btn--block" style="margin-top:1rem;">{{ 'customer.recover_password.submit' | t }}</button>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+
+    {%- if shop.checkout.guest_login -%}
+      {%- form 'guest_login' -%}
+        <button type="submit" class="btn btn--secondary btn--block" style="margin-top:1rem;">{{ 'customer.log_in.guest_continue' | t }}</button>
+      {%- endform -%}
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  (function () {
+    var trigger = document.querySelector('[data-show-recover]');
+    var panel = document.getElementById('recover-password');
+    if (!trigger || !panel) return;
+    trigger.addEventListener('click', function (e) {
+      e.preventDefault();
+      panel.hidden = false;
+      var input = panel.querySelector('input');
+      if (input) input.focus();
+    });
+  })();
+</script>

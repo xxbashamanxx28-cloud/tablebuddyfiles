@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "quiz": {
+      "type": "quiz",
+      "settings": {
+        "color_scheme": "scheme-paper",
+        "heading": "Find your Table Buddy",
+        "text": "Answer three quick questions and we'll match you to the right model."
+      },
+      "blocks": {
+        "res-regular": { "type": "result", "settings": { "result_key": "regular", "title": "Table Buddy Regular", "text": "Simple, adjustable and ready for anywhere you sit." } },
+        "res-smart": { "type": "result", "settings": { "result_key": "smart", "title": "Table Buddy Smart", "text": "Everything in Regular, plus a built-in cup holder for drinks within reach." } },
+        "res-executive": { "type": "result", "settings": { "result_key": "executive", "title": "Table Buddy Executive", "text": "The full setup — cup holder and detachable footrest for maximum comfort." } }
+      },
+      "block_order": ["res-regular", "res-smart", "res-executive"]
+    }
+  },
+  "order": ["quiz"]
+}

@@ -1,0 +1,34 @@
+{
+  "sections": {
+    "builder": {
+      "type": "bundle-builder",
+      "settings": {
+        "color_scheme": "scheme-paper",
+        "eyebrow": "Create your own bundle",
+        "heading": "Build your own bundle",
+        "text": "Start with a table, then add any accessories you'd like — all in one order."
+      },
+      "blocks": {
+        "m1": { "type": "required_choice", "settings": {} },
+        "m2": { "type": "required_choice", "settings": {} },
+        "m3": { "type": "required_choice", "settings": {} }
+      },
+      "block_order": ["m1", "m2", "m3"]
+    },
+    "faq": {
+      "type": "faq-accordion",
+      "settings": {
+        "color_scheme": "scheme-sky",
+        "narrow": true,
+        "eyebrow": "Bundle questions",
+        "heading": "Common questions"
+      },
+      "blocks": {
+        "f1": { "type": "faq", "settings": { "question": "Can I mix colours?", "answer": "<p>Yes — pick your preferred colour on each product page before adding it to your bundle.</p>" } },
+        "f2": { "type": "faq", "settings": { "question": "Is there a discount for bundling?", "answer": "<p>[ Configure any bundle discount in Shopify and confirm the terms here once set up. ]</p>" } }
+      },
+      "block_order": ["f1", "f2"]
+    }
+  },
+  "order": ["builder", "faq"]
+}

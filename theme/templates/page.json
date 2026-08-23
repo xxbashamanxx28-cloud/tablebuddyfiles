@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": { "color_scheme": "scheme-paper", "narrow": false, "center": false }
+    }
+  },
+  "order": ["main"]
+}

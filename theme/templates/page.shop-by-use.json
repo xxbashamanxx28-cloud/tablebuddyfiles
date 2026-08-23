@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "intro": {
+      "type": "rich-text",
+      "settings": {
+        "color_scheme": "scheme-paper",
+        "center": true,
+        "eyebrow": "Shop by use",
+        "heading": "Find your Table Buddy by how you'll use it",
+        "text": "<p>Same adjustable table, endless ways to use it. Pick your scenario to see the setup that suits it best.</p>"
+      }
+    },
+    "grid": {
+      "type": "collection-list",
+      "settings": { "color_scheme": "scheme-paper", "narrow": true, "center_header": false },
+      "blocks": {
+        "c1": { "type": "card", "settings": { "title": "Working from Home", "link": "/pages/working-from-home" } },
+        "c2": { "type": "card", "settings": { "title": "Sofa and Recliner", "link": "/pages/sofa-and-recliner" } },
+        "c3": { "type": "card", "settings": { "title": "Bedside", "link": "/pages/bedside" } },
+        "c4": { "type": "card", "settings": { "title": "Meals and Snacking", "link": "/pages/meals-and-snacking" } },
+        "c5": { "type": "card", "settings": { "title": "Reading and Studying", "link": "/pages/reading-and-studying" } },
+        "c6": { "type": "card", "settings": { "title": "Gaming", "link": "/pages/gaming" } },
+        "c7": { "type": "card", "settings": { "title": "Crafts and Hobbies", "link": "/pages/crafts-and-hobbies" } },
+        "c8": { "type": "card", "settings": { "title": "Small-Space Living", "link": "/pages/small-space-living" } }
+      },
+      "block_order": ["c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8"]
+    }
+  },
+  "order": ["intro", "grid"]
+}

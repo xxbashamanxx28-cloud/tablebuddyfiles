@@ -1,0 +1,76 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "color_scheme": "scheme-paper",
+        "show_benefit_icons": true
+      }
+    },
+    "benefit-split": {
+      "type": "benefit-split",
+      "settings": {
+        "color_scheme": "scheme-navy",
+        "eyebrow": "Why you'll love it",
+        "heading": "Adjusts to your day, not the other way around",
+        "button_label": "See all models",
+        "button_link": "/collections/all"
+      },
+      "blocks": {
+        "b1": { "type": "benefit", "settings": { "icon": "height", "title": "Six height positions", "text": "From sofa-side snacking height to standing desk height." } },
+        "b2": { "type": "benefit", "settings": { "icon": "angle", "title": "Three tabletop angles", "text": "Flat, tilted for reading and writing, or steep for hobbies." } },
+        "b3": { "type": "benefit", "settings": { "icon": "portable", "title": "Portable and lightweight", "text": "Carry it room to room, or fold it flat for the car." } }
+      },
+      "block_order": ["b1", "b2", "b3"]
+    },
+    "complete-the-set": {
+      "type": "featured-products",
+      "settings": {
+        "color_scheme": "scheme-paper",
+        "center_header": true,
+        "eyebrow": "Complete the set",
+        "heading": "You might also like",
+        "view_all_link": "/collections/all",
+        "view_all_label": "Shop all Table Buddy"
+      },
+      "blocks": {
+        "p1": { "type": "product", "settings": {} },
+        "p2": { "type": "product", "settings": {} },
+        "p3": { "type": "product", "settings": {} }
+      },
+      "block_order": ["p1", "p2", "p3"]
+    },
+    "reviews-carousel": {
+      "type": "reviews-carousel",
+      "settings": {
+        "color_scheme": "scheme-sky",
+        "eyebrow": "Customer love",
+        "heading": "See what the buzz is about",
+        "show_summary": true,
+        "average_rating": 4.8,
+        "review_count": 214
+      },
+      "blocks": {
+        "r1": { "type": "review", "settings": { "rating": 5, "quote": "I work from the couch three days a week now. Six height settings means it's perfect for my laptop and my lunch plate.", "author": "Sarah T.", "location": "Brisbane, QLD" } },
+        "r2": { "type": "review", "settings": { "rating": 5, "quote": "The footrest on the Executive is genuinely brilliant and the cup holder means tea doesn't end up on the carpet anymore.", "author": "Michael R.", "location": "Geelong, VIC" } },
+        "r3": { "type": "review", "settings": { "rating": 5, "quote": "Folds completely flat and slides behind the couch. Genuinely space-saving for my tiny apartment.", "author": "Josh L.", "location": "Fremantle, WA" } }
+      },
+      "block_order": ["r1", "r2", "r3"]
+    },
+    "faq": {
+      "type": "faq-accordion",
+      "settings": {
+        "color_scheme": "scheme-paper",
+        "eyebrow": "Questions",
+        "heading": "Frequently asked questions"
+      },
+      "blocks": {
+        "f1": { "type": "faq", "settings": { "question": "How many height positions does Table Buddy have?", "answer": "<p>Six height positions across every model, so it adapts whether you're on the sofa, in bed, or standing.</p>" } },
+        "f2": { "type": "faq", "settings": { "question": "Do I need tools to set it up?", "answer": "<p>No tools required — unfold, click into position, done.</p>" } },
+        "f3": { "type": "faq", "settings": { "question": "What's your returns policy?", "answer": "<p>30-day money-back guarantee. See our <a href=\"/pages/returns\">Returns</a> page for details.</p>" } }
+      },
+      "block_order": ["f1", "f2", "f3"]
+    }
+  },
+  "order": ["main", "benefit-split", "complete-the-set", "reviews-carousel", "faq"]
+}

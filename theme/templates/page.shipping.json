@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "intro": {
+      "type": "rich-text",
+      "settings": {
+        "color_scheme": "scheme-paper",
+        "center": true,
+        "eyebrow": "Delivery",
+        "heading": "Shipping",
+        "text": "<p>[ Configurable placeholder — add real shipping zones, carriers, costs and delivery timeframes here once confirmed. Required info: dispatch time, carrier(s), delivery estimates by state/region, and shipping costs or free-shipping threshold. ]</p>"
+      }
+    },
+    "faq": {
+      "type": "faq-accordion",
+      "settings": {
+        "color_scheme": "scheme-sky",
+        "narrow": true,
+        "eyebrow": "Shipping questions",
+        "heading": "Common questions"
+      },
+      "blocks": {
+        "f1": { "type": "faq", "settings": { "question": "How long does shipping take?", "answer": "<p>[ Add confirmed delivery timeframes by region. ]</p>" } },
+        "f2": { "type": "faq", "settings": { "question": "Do you ship Australia-wide?", "answer": "<p>[ Confirm shipping coverage and any excluded regions. ]</p>" } },
+        "f3": { "type": "faq", "settings": { "question": "How can I track my order?", "answer": "<p>You'll receive a tracking link by email once your order ships. See our <a href=\"/pages/order-tracking\">Order Tracking</a> page for more.</p>" } }
+      },
+      "block_order": ["f1", "f2", "f3"]
+    }
+  },
+  "order": ["intro", "faq"]
+}

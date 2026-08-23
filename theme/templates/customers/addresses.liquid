@@ -1,0 +1,44 @@
+<div class="color-scheme-paper">
+  <div class="page-width section section--tight">
+    <a href="{{ routes.account_url }}" class="link-arrow" style="margin-bottom:1.5rem;">{%- render 'icon', name: 'chevron-left', size: 16 -%} {{ 'customer.account.title' | t }}</a>
+    <h1 class="h1" style="margin:1rem 0 2rem;">{{ 'customer.addresses.title' | t }}</h1>
+
+    <button type="button" class="btn btn--primary" data-open-drawer="new-address-drawer" style="margin-bottom:2rem;">{{ 'customer.addresses.add_new' | t }}</button>
+
+    <div class="grid grid--3">
+      {%- for address in customer.addresses -%}
+        <div class="card card--pad">
+          {%- if address == customer.default_address -%}<span class="badge" style="margin-bottom:0.75rem;display:inline-flex;">{{ 'customer.addresses.default' | t }}</span>{%- endif -%}
+          <p style="line-height:1.6;">{{ address | format_address }}</p>
+          <div class="flex gap-sm" style="margin-top:1rem;">
+            <button type="button" class="btn btn--secondary btn--sm" data-open-drawer="edit-address-{{ address.id }}">{{ 'customer.addresses.edit' | t }}</button>
+            {%- form 'customer_address', address -%}
+              <input type="hidden" name="_method" value="delete">
+              <button type="submit" class="btn btn--secondary btn--sm" onclick="return confirm('{{ 'customer.addresses.delete_confirm' | t }}')">{{ 'customer.addresses.delete' | t }}</button>
+            {%- endform -%}
+          </div>
+        </div>
+
+        <div class="drawer" id="edit-address-{{ address.id }}" aria-hidden="true">
+          <div class="drawer__header"><span class="h4" style="margin:0;">{{ 'customer.addresses.edit' | t }}</span><button type="button" class="icon-btn" data-close-drawer aria-label="Close">{%- render 'icon', name: 'close' -%}</button></div>
+          <div class="drawer__body">
+            {%- form 'customer_address', address -%}
+              {%- render 'address-fields', form: form, address: address -%}
+              <button type="submit" class="btn btn--primary btn--block" style="margin-top:1.5rem;">Save address</button>
+            {%- endform -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <div class="drawer" id="new-address-drawer" aria-hidden="true">
+      <div class="drawer__header"><span class="h4" style="margin:0;">{{ 'customer.addresses.add_new' | t }}</span><button type="button" class="icon-btn" data-close-drawer aria-label="Close">{%- render 'icon', name: 'close' -%}</button></div>
+      <div class="drawer__body">
+        {%- form 'customer_address', customer.new_address -%}
+          {%- render 'address-fields', form: form -%}
+          <button type="submit" class="btn btn--primary btn--block" style="margin-top:1.5rem;">Save address</button>
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</div>

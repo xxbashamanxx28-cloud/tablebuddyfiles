@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{ shop.name }} gift card</title>
+  {{ 'theme-variables.css.liquid' | asset_url | stylesheet_tag }}
+  {{ 'base.css' | asset_url | stylesheet_tag }}
+  {{ 'components.css' | asset_url | stylesheet_tag }}
+  <meta name="robots" content="noindex">
+</head>
+<body class="color-scheme-navy" style="min-height:100vh;">
+  <div class="page-width section" style="max-width:560px;text-align:center;">
+    {%- if settings.logo != blank -%}
+      <img src="{{ settings.logo | image_url: width: 200 }}" alt="{{ shop.name }}" width="140" style="margin:0 auto 2rem;">
+    {%- else -%}
+      <p class="site-header__logo-text" style="color:#fff;margin-bottom:2rem;">{{ shop.name }}</p>
+    {%- endif -%}
+
+    <div class="card card--pad" style="background:#fff;color:#0B1B2B;">
+      <p class="eyebrow">Gift card</p>
+      <h1 class="h1" style="margin-top:0.5rem;">{{ gift_card.initial_value | money }}</h1>
+      {%- if gift_card.enabled and gift_card.expired == false -%}
+        <p style="font-family:monospace;font-size:1.2rem;letter-spacing:0.08em;margin-top:1rem;padding:0.75rem;background:#F7FAFD;border-radius:12px;">{{ gift_card.code | format_code }}</p>
+        <p class="text-muted" style="margin-top:0.75rem;">Balance: {{ gift_card.balance | money }}</p>
+        {%- if gift_card.qr_identifier -%}
+          <div style="margin-top:1.25rem;">{{ gift_card | image_url: width: 200 | image_tag }}</div>
+        {%- endif -%}
+      {%- else -%}
+        <p class="text-muted" style="margin-top:1rem;">This gift card is no longer active.</p>
+      {%- endif -%}
+      <a href="{{ shop.url }}" class="btn btn--primary btn--block" style="margin-top:1.5rem;">Shop {{ shop.name }}</a>
+    </div>
+  </div>
+</body>
+</html>

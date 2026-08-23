@@ -1,0 +1,35 @@
+{
+  "sections": {
+    "intro": {
+      "type": "main-page",
+      "settings": { "color_scheme": "scheme-paper", "center": true }
+    },
+    "recommended": {
+      "type": "featured-products",
+      "settings": {
+        "color_scheme": "scheme-sky",
+        "center_header": true,
+        "eyebrow": "Recommended for this",
+        "heading": "The right setup for this use",
+        "view_all_link": "/collections/all",
+        "view_all_label": "Browse all products"
+      },
+      "blocks": {
+        "p1": { "type": "product", "settings": {} },
+        "p2": { "type": "product", "settings": {} }
+      },
+      "block_order": ["p1", "p2"]
+    },
+    "more-uses": {
+      "type": "rich-text",
+      "settings": {
+        "color_scheme": "scheme-paper",
+        "center": true,
+        "heading": "Looking for a different setup?",
+        "button_label": "See all uses",
+        "button_link": "/pages/shop-by-use"
+      }
+    }
+  },
+  "order": ["intro", "recommended", "more-uses"]
+}

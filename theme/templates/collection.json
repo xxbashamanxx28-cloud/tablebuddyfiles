@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "settings": { "color_scheme": "scheme-paper" }
+    }
+  },
+  "order": ["main"]
+}

@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "intro": {
+      "type": "rich-text",
+      "settings": {
+        "color_scheme": "scheme-paper",
+        "center": true,
+        "eyebrow": "Peace of mind",
+        "heading": "Returns",
+        "text": "<p>Every Table Buddy comes with a 30-day money-back guarantee. [ Configurable placeholder — confirm exact return window, condition requirements, who covers return shipping, and refund processing time. ]</p>"
+      }
+    },
+    "faq": {
+      "type": "faq-accordion",
+      "settings": {
+        "color_scheme": "scheme-sky",
+        "narrow": true,
+        "eyebrow": "Returns questions",
+        "heading": "Common questions"
+      },
+      "blocks": {
+        "f1": { "type": "faq", "settings": { "question": "How do I start a return?", "answer": "<p>Contact us via our <a href=\"/pages/contact\">Contact</a> page with your order number and we'll guide you through the process.</p>" } },
+        "f2": { "type": "faq", "settings": { "question": "Who pays for return shipping?", "answer": "<p>[ Confirm return shipping policy. ]</p>" } },
+        "f3": { "type": "faq", "settings": { "question": "How long do refunds take?", "answer": "<p>[ Confirm refund processing timeframe. ]</p>" } }
+      },
+      "block_order": ["f1", "f2", "f3"]
+    }
+  },
+  "order": ["intro", "faq"]
+}

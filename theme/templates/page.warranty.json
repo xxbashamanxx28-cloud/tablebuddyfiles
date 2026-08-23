@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "intro": {
+      "type": "rich-text",
+      "settings": {
+        "color_scheme": "scheme-paper",
+        "center": true,
+        "eyebrow": "Built to last",
+        "heading": "Warranty",
+        "text": "<p>[ Configurable placeholder — add confirmed warranty length, what's covered (frame, tabletop, cup holder, footrest mechanism), and the claims process. ]</p>"
+      }
+    },
+    "faq": {
+      "type": "faq-accordion",
+      "settings": {
+        "color_scheme": "scheme-sky",
+        "narrow": true,
+        "eyebrow": "Warranty questions",
+        "heading": "Common questions"
+      },
+      "blocks": {
+        "f1": { "type": "faq", "settings": { "question": "How long is the warranty?", "answer": "<p>[ Confirm warranty term. ]</p>" } },
+        "f2": { "type": "faq", "settings": { "question": "What does the warranty cover?", "answer": "<p>[ Confirm coverage details. ]</p>" } },
+        "f3": { "type": "faq", "settings": { "question": "How do I make a warranty claim?", "answer": "<p>Contact us via our <a href=\"/pages/contact\">Contact</a> page with your order number and a description of the issue.</p>" } }
+      },
+      "block_order": ["f1", "f2", "f3"]
+    }
+  },
+  "order": ["intro", "faq"]
+}

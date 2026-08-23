@@ -1,0 +1,31 @@
+{%- comment -%} Accepts: product {%- endcomment -%}
+{%- for option in product.options_with_values -%}
+  <div class="field" data-option-value>
+    <span class="field__label">{{ option.name }}{% if option.name == 'Color' %}: <span data-selected-value>{{ option.selected_value }}</span>{% endif %}</span>
+    {%- if option.name == 'Color' -%}
+      <div class="swatch-group" role="radiogroup" aria-label="{{ option.name }}">
+        {%- for value in option.values -%}
+          <label data-option-value>
+            <input type="radio" name="option-{{ option.position }}" value="{{ value | escape }}"
+              data-option-input data-option-index="{{ forloop.index0 }}"
+              class="visually-hidden"
+              {% if value == option.selected_value %}checked{% endif %}>
+            {%- render 'swatch', value: value, selected: value == option.selected_value -%}
+          </label>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <div class="flex gap-sm" style="flex-wrap:wrap;" role="radiogroup" aria-label="{{ option.name }}">
+        {%- for value in option.values -%}
+          <label class="btn btn--secondary btn--sm" data-option-value style="{% if value == option.selected_value %}background:var(--cs-btn-bg,#2A4FE0);color:var(--cs-btn-text,#fff);{% endif %}">
+            <input type="radio" name="option-{{ option.position }}" value="{{ value | escape }}"
+              data-option-input data-option-index="{{ forloop.index0 }}"
+              class="visually-hidden"
+              {% if value == option.selected_value %}checked{% endif %}>
+            {{ value }}
+          </label>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+{%- endfor -%}

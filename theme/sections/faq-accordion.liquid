@@ -1,0 +1,55 @@
+<div class="color-{{ section.settings.color_scheme }}">
+  <div class="page-width section {% if section.settings.narrow %}section--tight{% endif %}">
+    <div class="section-header section-header--center">
+      <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2 class="h2">{{ section.settings.heading }}</h2>
+    </div>
+    <div class="accordion" style="max-width:760px;margin-inline:auto;" data-single-open>
+      {%- for block in section.blocks -%}
+        <tb-accordion-item class="accordion__item" {{ block.shopify_attributes }}>
+          <button type="button" class="accordion__trigger" aria-expanded="false">
+            {{ block.settings.question }}
+            <span class="accordion__icon">{%- render 'icon', name: 'plus', size: 18 -%}</span>
+          </button>
+          <div class="accordion__panel">
+            <div class="accordion__panel-inner prose">{{ block.settings.answer }}</div>
+          </div>
+        </tb-accordion-item>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "FAQ accordion",
+  "tag": "section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-paper" },
+    { "type": "checkbox", "id": "narrow", "label": "Reduce top/bottom spacing", "default": false },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Questions" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Frequently asked questions" }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Question goes here" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Answer goes here.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ accordion",
+      "blocks": [
+        { "type": "faq", "settings": { "question": "How many height positions does Table Buddy have?", "answer": "<p>Every Table Buddy model — Regular, Smart and Executive — adjusts across six height positions, so it works whether you're sitting on the sofa, propped up in bed, or standing.</p>" } },
+        { "type": "faq", "settings": { "question": "Do I need tools to set it up?", "answer": "<p>No tools required. Unfold the legs, click them into your chosen height and angle, and you're ready to go — most people are set up in under a minute.</p>" } },
+        { "type": "faq", "settings": { "question": "What's the difference between Regular, Smart and Executive?", "answer": "<p>Regular is the core adjustable table. Smart adds a built-in cup holder. Executive adds a cup holder and a detachable footrest for extra comfort.</p>" } },
+        { "type": "faq", "settings": { "question": "Does it fold flat for storage?", "answer": "<p>Yes — every model folds down to a compact, slim profile that slides beside a sofa, under a bed, or into a closet.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

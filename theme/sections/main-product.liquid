@@ -1,0 +1,132 @@
+<div class="color-{{ section.settings.color_scheme }}">
+  <div class="page-width section section--tight">
+    <nav class="breadcrumbs" aria-label="Breadcrumb" style="margin-bottom:1.5rem;">
+      <a href="{{ routes.root_url }}">{{ 'general.breadcrumbs.home' | t }}</a>
+      {%- render 'icon', name: 'chevron-right', size: 14 -%}
+      {%- if collection -%}
+        <a href="{{ collection.url }}">{{ collection.title }}</a>
+        {%- render 'icon', name: 'chevron-right', size: 14 -%}
+      {%- endif -%}
+      <span>{{ product.title }}</span>
+    </nav>
+
+    <div class="grid grid--2" style="gap:3rem;align-items:flex-start;">
+      <div>
+        {%- render 'product-gallery', product: product -%}
+      </div>
+
+      <tb-product-form>
+        <script type="application/json" data-product-json>{{ product | json }}</script>
+        {%- if product.metafields.custom.bestseller or product.metafields.reviews.rating -%}
+          <div class="flex gap-sm" style="align-items:center;margin-bottom:0.75rem;">
+            {%- if product.metafields.custom.bestseller -%}<span class="badge">{{ settings.badge_bestseller_text }}</span>{%- endif -%}
+            {%- if product.metafields.reviews.rating -%}
+              {%- render 'star-rating', rating: product.metafields.reviews.rating.value.rating, count: product.metafields.reviews.rating_count.value -%}
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        <h1 class="h1" style="font-size:clamp(1.8rem,1.4rem+1.8vw,2.6rem);">{{ product.title }}</h1>
+        {%- if product.metafields.custom.subtitle -%}
+          <p class="text-muted" style="font-size:1.05rem;margin-top:0.4rem;">{{ product.metafields.custom.subtitle }}</p>
+        {%- endif -%}
+
+        <div style="margin:1.25rem 0;">{%- render 'price', product: product, show_from: false -%}</div>
+
+        <form data-type="add-to-cart-form">
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-variant-id-input>
+
+          {%- render 'product-variant-picker', product: product -%}
+
+          <div class="field" style="margin-top:1.25rem;">
+            <label class="field__label" for="quantity-{{ product.id }}">{{ 'products.product.quantity' | t }}</label>
+            <div class="quantity-selector">
+              <button type="button" data-quantity-change="decrease" aria-label="Decrease quantity">&minus;</button>
+              <input type="number" id="quantity-{{ product.id }}" name="quantity" value="1" min="1" aria-label="{{ 'products.product.quantity' | t }}">
+              <button type="button" data-quantity-change="increase" aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+
+          <p role="alert" data-form-error hidden style="color:#C0362C;margin-top:0.75rem;font-size:0.9rem;"></p>
+
+          <button type="submit" class="btn btn--primary btn--block" style="margin-top:1.5rem;" data-submit-button
+            {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
+            data-add-text="{{ 'products.product.add_to_cart' | t }}"
+            data-soldout-text="{{ 'products.product.sold_out' | t }}"
+            data-unavailable-text="{{ 'products.product.unavailable' | t }}">
+            {% if product.selected_or_first_available_variant.available %}{{ 'products.product.add_to_cart' | t }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}
+          </button>
+
+          <p data-availability style="margin-top:0.75rem;font-size:0.9rem;"
+             data-in-stock-text="{{ 'products.product.in_stock' | t }}"
+             data-oos-text="{{ 'products.product.sold_out' | t }}">
+            {% if product.selected_or_first_available_variant.available %}{{ 'products.product.in_stock' | t }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}
+          </p>
+        </form>
+
+        <div class="flex gap-md" style="flex-wrap:wrap;margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid var(--cs-border,#E4ECF5);">
+          <span class="flex gap-xs" style="align-items:center;font-size:0.85rem;font-weight:600;">{%- render 'icon', name: 'truck', size: 18 -%} {{ 'products.product.free_shipping_badge' | t }}</span>
+          <span class="flex gap-xs" style="align-items:center;font-size:0.85rem;font-weight:600;">{%- render 'icon', name: 'shield', size: 18 -%} {{ 'products.product.money_back_badge' | t }}</span>
+          <span class="flex gap-xs" style="align-items:center;font-size:0.85rem;font-weight:600;">{%- render 'icon', name: 'refresh', size: 18 -%} {{ 'products.product.warranty_badge' | t }}</span>
+        </div>
+
+        {%- if section.settings.show_benefit_icons -%}
+          <div class="grid grid--2" style="gap:1rem;margin-top:1.75rem;">
+            <span class="flex gap-sm" style="align-items:center;"><span class="benefit-list__icon" style="background:var(--cs-card);width:36px;height:36px;">{%- render 'icon', name: 'height', size: 18 -%}</span> 6 height positions</span>
+            <span class="flex gap-sm" style="align-items:center;"><span class="benefit-list__icon" style="background:var(--cs-card);width:36px;height:36px;">{%- render 'icon', name: 'angle', size: 18 -%}</span> 3 tabletop angles</span>
+            <span class="flex gap-sm" style="align-items:center;"><span class="benefit-list__icon" style="background:var(--cs-card);width:36px;height:36px;">{%- render 'icon', name: 'no-tools', size: 18 -%}</span> No-tool setup</span>
+            <span class="flex gap-sm" style="align-items:center;"><span class="benefit-list__icon" style="background:var(--cs-card);width:36px;height:36px;">{%- render 'icon', name: 'fold', size: 18 -%}</span> Folds flat</span>
+          </div>
+        {%- endif -%}
+
+        <div class="accordion" style="margin-top:2rem;" data-single-open>
+          <tb-accordion-item class="accordion__item">
+            <button type="button" class="accordion__trigger" aria-expanded="true">
+              {{ 'products.product.description' | t }}
+              <span class="accordion__icon">{%- render 'icon', name: 'plus', size: 18 -%}</span>
+            </button>
+            <div class="accordion__panel" style="max-height:1000px;">
+              <div class="accordion__panel-inner prose">{{ product.description }}</div>
+            </div>
+          </tb-accordion-item>
+
+          {%- if product.metafields.custom.specifications != blank -%}
+          <tb-accordion-item class="accordion__item">
+            <button type="button" class="accordion__trigger" aria-expanded="false">
+              {{ 'products.product.specifications' | t }}
+              <span class="accordion__icon">{%- render 'icon', name: 'plus', size: 18 -%}</span>
+            </button>
+            <div class="accordion__panel">
+              <div class="accordion__panel-inner prose">{{ product.metafields.custom.specifications }}</div>
+            </div>
+          </tb-accordion-item>
+          {%- endif -%}
+
+          <tb-accordion-item class="accordion__item">
+            <button type="button" class="accordion__trigger" aria-expanded="false">
+              {{ 'products.product.shipping_returns' | t }}
+              <span class="accordion__icon">{%- render 'icon', name: 'plus', size: 18 -%}</span>
+            </button>
+            <div class="accordion__panel">
+              <div class="accordion__panel-inner prose">
+                {{ section.settings.shipping_returns_text }}
+              </div>
+            </div>
+          </tb-accordion-item>
+        </div>
+      </tb-product-form>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product information",
+  "tag": "section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-paper" },
+    { "type": "checkbox", "id": "show_benefit_icons", "label": "Show adjustability icons", "default": true },
+    { "type": "richtext", "id": "shipping_returns_text", "label": "Shipping & returns text", "default": "<p>Ships from our Australian warehouse. See our <a href=\"/pages/shipping\">Shipping</a> and <a href=\"/pages/returns\">Returns</a> pages for full details.</p>" }
+  ]
+}
+{% endschema %}

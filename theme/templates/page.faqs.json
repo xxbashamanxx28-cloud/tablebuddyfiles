@@ -1,0 +1,35 @@
+{
+  "sections": {
+    "faq": {
+      "type": "faq-accordion",
+      "settings": {
+        "color_scheme": "scheme-paper",
+        "eyebrow": "Support",
+        "heading": "Frequently asked questions"
+      },
+      "blocks": {
+        "f1": { "type": "faq", "settings": { "question": "How many height positions does Table Buddy have?", "answer": "<p>All three models — Regular, Smart and Executive — adjust across six height positions, so it suits sitting on the sofa, propped up in bed, or standing.</p>" } },
+        "f2": { "type": "faq", "settings": { "question": "How many tabletop angles are there?", "answer": "<p>Three angles: flat for eating, gaming and laptop use, a gentle tilt for reading and writing, and a steeper angle for drawing and hobbies.</p>" } },
+        "f3": { "type": "faq", "settings": { "question": "Do I need tools to set it up?", "answer": "<p>No tools required. Unfold the legs, click them into your chosen height and angle, and you're done.</p>" } },
+        "f4": { "type": "faq", "settings": { "question": "What's the difference between Regular, Smart and Executive?", "answer": "<p>Regular is the core adjustable table. Smart adds a built-in cup holder. Executive adds a cup holder and a detachable footrest.</p>" } },
+        "f5": { "type": "faq", "settings": { "question": "Does it fold flat for storage?", "answer": "<p>Yes — every model folds to a slim, compact profile that slides beside a sofa, under a bed, or into a closet.</p>" } },
+        "f6": { "type": "faq", "settings": { "question": "Where do you ship from?", "answer": "<p>See our <a href=\"/pages/shipping\">Shipping</a> page for delivery times and costs.</p>" } },
+        "f7": { "type": "faq", "settings": { "question": "What's your returns policy?", "answer": "<p>See our <a href=\"/pages/returns\">Returns</a> page for full details on our 30-day money-back guarantee.</p>" } },
+        "f8": { "type": "faq", "settings": { "question": "Is Table Buddy covered by a warranty?", "answer": "<p>Yes — see our <a href=\"/pages/warranty\">Warranty</a> page for coverage details.</p>" } }
+      },
+      "block_order": ["f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8"]
+    },
+    "contact-cta": {
+      "type": "rich-text",
+      "settings": {
+        "color_scheme": "scheme-sky",
+        "center": true,
+        "heading": "Still have questions?",
+        "text": "<p>Our team is happy to help you pick the right model or track down an order.</p>",
+        "button_label": "Contact us",
+        "button_link": "/pages/contact"
+      }
+    }
+  },
+  "order": ["faq", "contact-cta"]
+}

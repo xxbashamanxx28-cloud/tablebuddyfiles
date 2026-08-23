@@ -1,0 +1,35 @@
+{
+  "sections": {
+    "intro": {
+      "type": "rich-text",
+      "settings": {
+        "color_scheme": "scheme-paper",
+        "center": true,
+        "eyebrow": "Bundles",
+        "heading": "Bundled setups, ready to go",
+        "text": "<p>Pre-built combinations for common routines, or build your own from scratch.</p>"
+      }
+    },
+    "grid": {
+      "type": "collection-list",
+      "settings": { "color_scheme": "scheme-sky", "eyebrow": "", "heading": "", "center_header": false },
+      "blocks": {
+        "c1": { "type": "card", "settings": { "title": "Work-from-Sofa Bundle", "subtitle": "Table + accessories for couch working" } },
+        "c2": { "type": "card", "settings": { "title": "Comfort Bundle", "subtitle": "Table + footrest comfort setup" } },
+        "c3": { "type": "card", "settings": { "title": "Couple's Bundle", "subtitle": "Two tables, one order" } },
+        "c4": { "type": "card", "settings": { "title": "Build Your Own Bundle", "subtitle": "Choose your own combination", "link": "/pages/build-your-own-bundle" } }
+      },
+      "block_order": ["c1", "c2", "c3", "c4"]
+    },
+    "note": {
+      "type": "rich-text",
+      "settings": {
+        "color_scheme": "scheme-paper",
+        "narrow": true,
+        "center": true,
+        "text": "<p class=\"text-muted\">[ Configurable placeholder — link each bundle card above to its live product/collection once bundle products and any bundle discounts are configured in Shopify (e.g. via a native Shopify bundle app or a discount rule). Do not display savings figures until they're set up and verified in Shopify. ]</p>"
+      }
+    }
+  },
+  "order": ["intro", "grid", "note"]
+}

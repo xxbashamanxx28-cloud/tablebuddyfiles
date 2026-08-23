@@ -1,0 +1,42 @@
+{
+  "sections": {
+    "intro": {
+      "type": "rich-text",
+      "settings": {
+        "color_scheme": "scheme-paper",
+        "center": true,
+        "eyebrow": "Will it fit?",
+        "heading": "Dimensions & fit guide",
+        "text": "<p>Every Table Buddy adjusts across six heights and three angles. Exact tabletop size, folded size, weight and load limit are listed below once confirmed by the product team.</p>"
+      }
+    },
+    "compare": {
+      "type": "compare-table",
+      "settings": {
+        "color_scheme": "scheme-sky",
+        "eyebrow": "Specifications",
+        "heading": "Dimensions by model",
+        "text": "",
+        "show_trust_row": false,
+        "button_label": "",
+        "button_link": ""
+      },
+      "blocks": {
+        "m1": { "type": "model", "settings": { "name": "Table Buddy Regular", "price_text": "$—", "height_positions": "6", "angles": "3", "cup_holder": false, "footrest": false, "colours": "9" } },
+        "m2": { "type": "model", "settings": { "name": "Table Buddy Smart", "price_text": "$—", "height_positions": "6", "angles": "3", "cup_holder": true, "footrest": false, "colours": "3" } },
+        "m3": { "type": "model", "settings": { "name": "Table Buddy Executive", "price_text": "$—", "height_positions": "6", "angles": "3", "cup_holder": true, "footrest": true, "colours": "2" } }
+      },
+      "block_order": ["m1", "m2", "m3"]
+    },
+    "fit-notes": {
+      "type": "rich-text",
+      "settings": {
+        "color_scheme": "scheme-paper",
+        "max_width": 760,
+        "heading": "Where it fits",
+        "text": "<p><strong>Sofas &amp; recliners:</strong> the base slides under most sofa frames — measure your sofa's clearance if it sits very low to the ground.</p><p><strong>Beds:</strong> works with most bed heights; the base sits on the floor beside the mattress.</p><p><strong>Small spaces:</strong> folds flat for storage — confirm folded dimensions below once available.</p><p>[ Placeholder — add confirmed tabletop size, folded size, height range, weight and maximum load once available. ]</p>"
+      }
+    }
+  },
+  "order": ["intro", "compare", "fit-notes"]
+}

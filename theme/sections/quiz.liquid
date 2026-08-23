@@ -1,0 +1,108 @@
+<div class="color-{{ section.settings.color_scheme }}">
+  <div class="page-width section">
+    <tb-quiz class="quiz">
+      <div class="quiz__progress" aria-hidden="true"><span></span><span></span><span></span></div>
+
+      <div class="quiz__step is-active" style="text-align:center;">
+        <p class="eyebrow">{{ 'quiz.title' | t }}</p>
+        <h1 class="h1">{{ section.settings.heading }}</h1>
+        <p class="text-muted" style="max-width:52ch;margin:0.75rem auto 0;">{{ section.settings.text }}</p>
+        <button type="button" class="btn btn--primary" style="margin-top:2rem;" data-quiz-start>{{ 'quiz.start' | t }}</button>
+      </div>
+
+      <div class="quiz__step">
+        <h2 class="h3">Where will you use it most?</h2>
+        <div class="quiz__options">
+          <button type="button" class="quiz__option" data-quiz-option data-key="use_case" data-value="sofa">On the sofa or recliner</button>
+          <button type="button" class="quiz__option" data-quiz-option data-key="use_case" data-value="bed">In bed</button>
+          <button type="button" class="quiz__option" data-quiz-option data-key="use_case" data-value="desk">As a desk alternative</button>
+          <button type="button" class="quiz__option" data-quiz-option data-key="use_case" data-value="multiple">A bit of everywhere</button>
+        </div>
+      </div>
+
+      <div class="quiz__step">
+        <button type="button" class="link" data-quiz-back style="margin-bottom:1rem;">&larr; {{ 'quiz.back' | t }}</button>
+        <h2 class="h3">Would a built-in cup holder help?</h2>
+        <div class="quiz__options">
+          <button type="button" class="quiz__option" data-quiz-option data-key="cup_holder" data-value="yes">Yes, I always have a drink nearby</button>
+          <button type="button" class="quiz__option" data-quiz-option data-key="cup_holder" data-value="no">Not essential</button>
+        </div>
+      </div>
+
+      <div class="quiz__step">
+        <button type="button" class="link" data-quiz-back style="margin-bottom:1rem;">&larr; {{ 'quiz.back' | t }}</button>
+        <h2 class="h3">Would you like a detachable footrest?</h2>
+        <div class="quiz__options">
+          <button type="button" class="quiz__option" data-quiz-option data-key="footrest" data-value="yes">Yes, extra comfort matters</button>
+          <button type="button" class="quiz__option" data-quiz-option data-key="footrest" data-value="no">No thanks</button>
+        </div>
+      </div>
+
+      <div class="quiz__step">
+        <p class="eyebrow" style="text-align:center;">{{ 'quiz.your_match' | t }}</p>
+        {%- for block in section.blocks -%}
+          <div data-result="{{ block.settings.result_key }}" hidden>
+            <div class="grid grid--2" style="gap:2rem;align-items:center;margin-top:1rem;">
+              <div style="aspect-ratio:1/1;background:var(--cs-card);border-radius:var(--radius-card);overflow:hidden;">
+                {%- if block.settings.image != blank -%}
+                  <img src="{{ block.settings.image | image_url: width: 700 }}" alt="{{ block.settings.title | escape }}" width="700" height="700" style="width:100%;height:100%;object-fit:contain;padding:1.5rem;" loading="lazy">
+                {%- endif -%}
+              </div>
+              <div>
+                <h2 class="h2">{{ block.settings.title }}</h2>
+                <p class="text-muted" style="margin-top:0.5rem;">{{ block.settings.text }}</p>
+                {%- if block.settings.product != blank -%}
+                  <div style="margin-top:1rem;">{%- render 'price', product: block.settings.product -%}</div>
+                  <a href="{{ block.settings.product.url }}" class="btn btn--primary" style="margin-top:1.5rem;">{{ 'products.product.view_details' | t }}</a>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+        <div class="flex-center" style="margin-top:2rem;">
+          <button type="button" class="link" data-quiz-retake>{{ 'quiz.retake' | t }}</button>
+        </div>
+      </div>
+    </tb-quiz>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product finder quiz",
+  "tag": "section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-paper" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Find your Table Buddy" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Answer three quick questions and we'll match you to the right model." }
+  ],
+  "blocks": [
+    {
+      "type": "result",
+      "name": "Result",
+      "settings": [
+        { "type": "select", "id": "result_key", "label": "Matches quiz answers for", "options": [
+          { "value": "regular", "label": "No cup holder, no footrest → Regular" },
+          { "value": "smart", "label": "Cup holder, no footrest → Smart" },
+          { "value": "executive", "label": "Cup holder + footrest → Executive" }
+        ] },
+        { "type": "product", "id": "product", "label": "Linked product" },
+        { "type": "image_picker", "id": "image", "label": "Image override" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Table Buddy Regular" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Product finder quiz",
+      "blocks": [
+        { "type": "result", "settings": { "result_key": "regular", "title": "Table Buddy Regular", "text": "Simple, adjustable and ready for anywhere you sit." } },
+        { "type": "result", "settings": { "result_key": "smart", "title": "Table Buddy Smart", "text": "Everything in Regular, plus a built-in cup holder for drinks within reach." } },
+        { "type": "result", "settings": { "result_key": "executive", "title": "Table Buddy Executive", "text": "The full setup — cup holder and detachable footrest for maximum comfort." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
